@@ -4,20 +4,12 @@ var inputText = document.querySelector(".text-box");
 var formInformation = document.querySelector("form");
 var renderIdeaBox = document.querySelector("#populatedIdea");
 var saveButton = document.querySelector('#saveButton');
-// var starIcon = document.querySelector("#starIcon")
-// var ideaBoxClass = document.querySelector(".idea-box-class")
-
 
 // Event Listeners
 formInformation.addEventListener("submit", submitNewIdea);
 window.addEventListener("load", loadWindow);
 title.addEventListener("input", enableButton);
 inputText.addEventListener("input", enableButton);
-// ideaBoxClass.addEventListener('click', favoritedStar);
-
-
-
-
 
 // global variables
 var newIdea = [];
@@ -30,10 +22,6 @@ function submitNewIdea(event) {
   renderIdea();
   clearTextBoxes();
   disableButton();
-
-  // formInputValidation();
-
-  //single responsibility function...
 };
 
 function createIdeaList() {
@@ -49,27 +37,30 @@ function renderIdea() {
     renderIdeaBox.innerHTML = "";
 
     for (var i = 0; i < ideaList.length; i++) {
-    createList += `<div class="idea-boxes">
-      <div class="idea-box-header">
-        <img class="star-icon icon" id="${ideaList[i].id}" src="${ideaList[i].url}"/>
-        <img class="delete-icon icon" src="./assets/delete.svg"/>
+    createList +=
+    `
+      <div class="idea-boxes">
+        <div class="idea-box-header">
+          <img class="star-icon icon" id="${ideaList[i].id}" src="${ideaList[i].url}"/>
+          <img class="delete-icon icon" src="./assets/delete.svg"/>
+        </div>
+        <div class="comment-information">
+          <p class="comment-title">${ideaList[i].title}</p>
+          <p class="comment-text">${ideaList[i].text}</p>
+        </div>
+        <div class="comment-footer">
+          <img class="comment-icon icon" src="./assets/comment.svg"/>
+          <p class="comment-class">Comment</p>
+        </div>
       </div>
-      <div class="comment-information">
-        <p class="comment-title">${ideaList[i].title}</p>
-        <p class="comment-text">${ideaList[i].text}</p>
-      </div>
-      <div class="comment-footer">
-        <img class="comment-icon icon" src="./assets/comment.svg"/>
-        <p class="comment-class">Comment</p>
-      </div>
-      </div>`
+      `
     }
     renderIdeaBox.innerHTML = createList;
 }
 
 var ideaBoxClass = document.querySelector(".idea-box-class")
-// var starIcon = document.querySelector("#starIcon")
 ideaBoxClass.addEventListener('click', favoritedStar);
+ideaBoxClass.addEventListener('click', deleteIdeaBox);
 
 function favoritedStar(event) {
   if (event.target.classList.contains('star-icon')) {
@@ -80,6 +71,17 @@ function favoritedStar(event) {
       event.target.src = ideaList[i].url;
     } else if (event.target.classList.contains('star-icon')) {
       event.target.src = ideaList[i].url;
+    }
+  }
+  renderIdea();
+}
+
+function deleteIdeaBox(event) {
+  if (event.target.classList.contains('star-icon')) {
+    for (var i = 0; ideaList.length; i++) {
+      if (ideaList[i].id === parseInt(event.target.id)) {
+        ideaList.splice(i, 1);
+      }
     }
   }
   renderIdea();
