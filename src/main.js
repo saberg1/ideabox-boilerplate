@@ -5,22 +5,27 @@ var formInformation = document.querySelector("form");
 var renderIdeaBox = document.querySelector("#populatedIdea");
 var saveButton = document.querySelector('#saveButton');
 var starIcon = document.querySelector("#starIcon")
+var ideaBoxClass = document.querySelector(".idea-box-class")
+
 
 // Event Listeners
 formInformation.addEventListener("submit", submitNewIdea);
 window.addEventListener("load", loadWindow);
 title.addEventListener("input", enableButton);
 inputText.addEventListener("input", enableButton);
-// renderIdeaBox.addEventListener("click", switchStarIcon);
+ideaBoxClass.addEventListener('click', favoritedStar);
 
 
-renderIdeaBox.addEventListener('click', function(event) {
-  for (var i = 0; i < 3; i++){
-  if (event.target.id === 'starIcon') {
-    starIcon.src = "./assets/star-active.svg"
-    console.log("star shold be here")  }
-  }
-});
+// go throught click one button, specific ID 
+// only button we want to hcange source on/ that specific ID
+// clicck another button have annother ID to target that button
+//to chang that source. in function need to assign queryslector
+//on the button i want. and run a functon when taht button is clicked
+//every ID should be unique. 
+//toggle
+
+
+ 
 
 
 // global variables
@@ -55,7 +60,7 @@ function renderIdea() {
     for (var i = 0; i < ideaList.length; i++) {
     createList += `<div class="idea-boxes">
       <div class="idea-box-header">
-        <img class="star-icon icon" id="starIcon" src="./assets/star.svg"/>
+        <img class="star-icon icon" id="starIcon${i}" src="./assets/star.svg"/>
         <img class="delete-icon icon" src="./assets/delete.svg"/>
       </div>
       <div class="comment-information">
@@ -99,6 +104,26 @@ function enableButton(event) {
     saveButton.disabled = true;
   };
 };
+
+//udpate data model - when star is clicked, update data model
+// call the ideaClass.method determine if === false || true and toggle
+// off that. data model updates based off status, if statement to 
+// if star = true ... if star = false ... 
+
+
+function favoritedStar(event) {
+  var selectedStar = document.querySelector(`#${event.target.id}`)
+
+  newIdea.updateIsStar(`#${event.target.id}`);
+    console.log("1", `#${event.target.id}`)
+  if (ideaList[0].isStar === true) {
+    selectedStar.src = "./assets/star-active.svg"
+    console.log("2", `#${event.target.id}`)
+  } else {
+    selectedStar.src = "./assets/star.svg"
+  }
+
+}
 
 // function switchStarIcon() {
 //   starIcon.src = "./assets/star-active.svg"
