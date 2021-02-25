@@ -5,7 +5,7 @@ var formInformation = document.querySelector("form");
 var renderIdeaBox = document.querySelector("#populatedIdea");
 var saveButton = document.querySelector('#saveButton');
 var starIcon = document.querySelector("#starIcon")
-// var starIconClass = document.querySelector(".star-icon")
+var ideaBoxClass = document.querySelector(".idea-box-class")
 
 
 // Event Listeners
@@ -13,7 +13,8 @@ formInformation.addEventListener("submit", submitNewIdea);
 window.addEventListener("load", loadWindow);
 title.addEventListener("input", enableButton);
 inputText.addEventListener("input", enableButton);
-// renderIdeaBox.addEventListener("click", switchStarIcon);
+ideaBoxClass.addEventListener('click', favoritedStar);
+
 
 // go throught click one button, specific ID 
 // only button we want to hcange source on/ that specific ID
@@ -22,16 +23,8 @@ inputText.addEventListener("input", enableButton);
 //on the button i want. and run a functon when taht button is clicked
 //every ID should be unique. 
 
-var ideaBoxClass = document.querySelector(".idea-box-class")
 
-ideaBoxClass.addEventListener('click', function(event) {
-  console.log(event.target.id) 
-  var selectedStar = document.querySelector(`#${event.target.id}`)
-  console.log(selectedStar)
-  // event.target.className === 'star-icon'
-    selectedStar.src = "./assets/star-active.svg"
-     
-});
+ 
 
 
 // global variables
@@ -110,6 +103,11 @@ function enableButton(event) {
     saveButton.disabled = true;
   };
 };
+
+function favoritedStar(event) {
+  var selectedStar = document.querySelector(`#${event.target.id}`)
+  selectedStar.src = "./assets/star-active.svg"
+}
 
 // function switchStarIcon() {
 //   starIcon.src = "./assets/star-active.svg"
