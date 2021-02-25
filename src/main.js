@@ -22,6 +22,7 @@ ideaBoxClass.addEventListener('click', favoritedStar);
 //to chang that source. in function need to assign queryslector
 //on the button i want. and run a functon when taht button is clicked
 //every ID should be unique. 
+//toggle
 
 
  
@@ -104,9 +105,24 @@ function enableButton(event) {
   };
 };
 
+//udpate data model - when star is clicked, update data model
+// call the ideaClass.method determine if === false || true and toggle
+// off that. data model updates based off status, if statement to 
+// if star = true ... if star = false ... 
+
+
 function favoritedStar(event) {
   var selectedStar = document.querySelector(`#${event.target.id}`)
-  selectedStar.src = "./assets/star-active.svg"
+
+  newIdea.updateIsStar(`#${event.target.id}`);
+    console.log("1", `#${event.target.id}`)
+  if (ideaList[0].isStar === true) {
+    selectedStar.src = "./assets/star-active.svg"
+    console.log("2", `#${event.target.id}`)
+  } else {
+    selectedStar.src = "./assets/star.svg"
+  }
+
 }
 
 // function switchStarIcon() {

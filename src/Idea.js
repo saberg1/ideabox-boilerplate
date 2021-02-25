@@ -15,6 +15,16 @@ class Idea {
 
   updateIdea() {
     // update title/body/star state
+    //reasign this.star to true
+    // ideaList.unshift(newIdea)
+    // ideaList.unshift(newIdea);
   }
 
+  updateIsStar(index){
+    if (this.isStar){
+      this.isStar = false
+    } else {
+        this.isStar = true
+    }
+  }
 }
