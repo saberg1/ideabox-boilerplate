@@ -5,6 +5,8 @@ var formInformation = document.querySelector("form");
 var renderIdeaBox = document.querySelector("#populatedIdea");
 var saveButton = document.querySelector('#saveButton');
 var starIcon = document.querySelector("#starIcon")
+// var starIconClass = document.querySelector(".star-icon")
+
 
 // Event Listeners
 formInformation.addEventListener("submit", submitNewIdea);
@@ -13,13 +15,22 @@ title.addEventListener("input", enableButton);
 inputText.addEventListener("input", enableButton);
 // renderIdeaBox.addEventListener("click", switchStarIcon);
 
+// go throught click one button, specific ID 
+// only button we want to hcange source on/ that specific ID
+// clicck another button have annother ID to target that button
+//to chang that source. in function need to assign queryslector
+//on the button i want. and run a functon when taht button is clicked
+//every ID should be unique. 
 
-renderIdeaBox.addEventListener('click', function(event) {
-  for (var i = 0; i < 3; i++){
-  if (event.target.id === 'starIcon') {
-    starIcon.src = "./assets/star-active.svg"
-    console.log("star shold be here")  }
-  }
+var ideaBoxClass = document.querySelector(".idea-box-class")
+
+ideaBoxClass.addEventListener('click', function(event) {
+  console.log(event.target.id) 
+  var selectedStar = document.querySelector(`#${event.target.id}`)
+  console.log(selectedStar)
+  // event.target.className === 'star-icon'
+    selectedStar.src = "./assets/star-active.svg"
+     
 });
 
 
@@ -55,7 +66,7 @@ function renderIdea() {
     for (var i = 0; i < ideaList.length; i++) {
     createList += `<div class="idea-boxes">
       <div class="idea-box-header">
-        <img class="star-icon icon" id="starIcon" src="./assets/star.svg"/>
+        <img class="star-icon icon" id="starIcon${i}" src="./assets/star.svg"/>
         <img class="delete-icon icon" src="./assets/delete.svg"/>
       </div>
       <div class="comment-information">
