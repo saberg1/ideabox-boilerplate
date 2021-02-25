@@ -212,3 +212,8 @@ article {
   height: 2rem;
   background-color: #5356A4;
 }
+
+/*-------------------HIDDEN---------------*/
+.hidden {
+  display: none;
+}
