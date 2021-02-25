@@ -47,7 +47,7 @@ function renderIdea() {
         <div class="idea-boxes">
           <div class="idea-box-header">
             <img class="star-icon icon" id="${ideaList[i].id}" src="${ideaList[i].url}"/>
-            <img class="delete-icon icon" id="deletIcon${i}" src="./assets/delete.svg"/>
+            <img class="delete-icon icon" id="${ideaList[i].id}" src="./assets/delete.svg"/>
           </div>
           <div class="comment-information">
             <p class="comment-title">${ideaList[i].title}</p>
@@ -66,6 +66,7 @@ function renderIdea() {
 var ideaBoxClass = document.querySelector(".idea-box-class");
 // var starIcon = document.querySelector(".idea-boxes");
 ideaBoxClass.addEventListener('click', favoritedStar);
+ideaBoxClass.addEventListener('click', deleteIdeaBox);
 
 function favoritedStar(event) {
   if (event.target.classList.contains('star-icon')) {
@@ -79,6 +80,20 @@ function favoritedStar(event) {
         console.log('b=', ideaList[i].isStar)
         event.target.src = ideaList[i].url;
     }
+  }
+  renderIdea()
+}
+
+function deleteIdeaBox(event) {
+  if (event.target.classList.contains('delete-icon')) {
+    console.log('yes');
+    for (var i = 0; i < ideaList.length; i++) {
+      if (ideaList[i].id === parseInt(event.target.id)) {
+        console.log('no')
+        ideaList.splice(i, 1);
+      }
+    }
+
   }
   renderIdea()
 }
