@@ -28,6 +28,7 @@ function submitNewIdea(event) {
   renderIdea();
   clearTextBoxes();
   disableButton();
+  newIdea.saveToStorage();
 }
 
 function createIdeaList() {
@@ -81,8 +82,10 @@ function favoritedStar(event) {
   renderIdea();
 }
 
+
+
 function deleteIdeaBox(event) {
-  if (event.target.classList.contains('star-icon')) {
+  if (event.target.classList.contains('delete-icon')) {
     for (var i = 0; ideaList.length; i++) {
       if (ideaList[i].id === parseInt(event.target.id)) {
         ideaList.splice(i, 1);
