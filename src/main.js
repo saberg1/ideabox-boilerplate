@@ -59,9 +59,38 @@ function renderIdea() {
           </div>
         </div>
       `
-    };
+    }
     renderIdeaBox.innerHTML = createList;
-};
+}
+
+var ideaBoxClass = document.querySelector(".idea-box-class")
+ideaBoxClass.addEventListener('click', favoritedStar);
+ideaBoxClass.addEventListener('click', deleteIdeaBox);
+
+function favoritedStar(event) {
+  if (event.target.classList.contains('star-icon')) {
+    newIdea.updateIdea(event.target.id);
+  }
+  for (var i = 0; ideaList.length; i++) {
+    if (ideaList[i].isStar === true && event.target.classList.contains('star-icon')) {
+      event.target.src = ideaList[i].url;
+    } else if (event.target.classList.contains('star-icon')) {
+      event.target.src = ideaList[i].url;
+    }
+  }
+  renderIdea();
+}
+
+function deleteIdeaBox(event) {
+  if (event.target.classList.contains('star-icon')) {
+    for (var i = 0; ideaList.length; i++) {
+      if (ideaList[i].id === parseInt(event.target.id)) {
+        ideaList.splice(i, 1);
+      }
+    }
+  }
+  renderIdea();
+}
 
 var ideaBoxClass = document.querySelector(".idea-box-class");
 // var starIcon = document.querySelector(".idea-boxes");
@@ -84,18 +113,10 @@ function favoritedStar(event) {
   renderIdea()
 }
 
-function deleteIdeaBox(event) {
-  if (event.target.classList.contains('delete-icon')) {
-    console.log('yes');
-    for (var i = 0; i < ideaList.length; i++) {
-      if (ideaList[i].id === parseInt(event.target.id)) {
-        console.log('no')
-        ideaList.splice(i, 1);
-      }
-    }
-
-  }
-  renderIdea()
+function loadWindow(event) {
+  event.preventDefault();
+  disableButton();
+  // disable button on load
 }
 
 function disableButton() {
@@ -118,5 +139,3 @@ function clearTextBoxes() {
   title.value = "";
   inputText.value = "";
 }
-
-

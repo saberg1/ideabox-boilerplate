@@ -13,7 +13,4 @@ var ideaList = [
   //  isStar: false},
   // {id: 4, 
   //  title: 'idea4', 
-  //  text:  'sometext4',
-  //  isStar: false},
   ];
-
