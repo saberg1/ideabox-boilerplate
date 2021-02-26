@@ -6,8 +6,13 @@ class Idea {
     this.url = url;
     this.isStar = false;
  }
+ 
   saveToStorage() {
-        //to be complated later
+    var objectToStore = ideaList;
+    var stringifiedObject = JSON.stringify(objectToStore);
+
+    // stringifiedObject (Notice our object has turned into a string!)
+    localStorage.setItem('somethingComplicated', stringifiedObject);
   }
 
   deleteFromStorage() {

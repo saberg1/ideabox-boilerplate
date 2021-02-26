@@ -28,6 +28,7 @@ function submitNewIdea(event) {
   renderIdea();
   clearTextBoxes();
   disableButton();
+  newIdea.saveToStorage();
 }
 
 function createIdeaList() {
@@ -80,6 +81,8 @@ function favoritedStar(event) {
   }
   renderIdea();
 }
+
+
 
 function deleteIdeaBox(event) {
   if (event.target.classList.contains('delete-icon')) {
