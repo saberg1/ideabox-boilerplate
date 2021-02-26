@@ -15,15 +15,15 @@ class Idea {
   }
 
   updateIdea(id) {
+    console.log(ideaList)
     for (var i = 0; i < ideaList.length; i++) {
       if (ideaList[i].id === parseInt(id) && ideaList[i].isStar === true) {
-        ideaList[i].isStar = false;
-        ideaList[i].url = "./assets/star.svg";
-      } else if (ideaList[i].id === parseInt(id) && ideaList[i].isStar === false) {
+       ideaList[i].isStar = false;
+       ideaList[i].url = "./assets/star.svg";
+      } else if (ideaList[i].id === parseInt(id) && ideaList[i].isStar === false){
           ideaList[i].isStar = true;
           ideaList[i].url = "./assets/star-active.svg";
       }
     }
   }
-
 }

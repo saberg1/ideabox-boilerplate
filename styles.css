@@ -20,7 +20,6 @@ main {
 aside {
   display: flex;
   flex-direction: column;
-  /* padding-left: 1rem; */
   height: 100vh;
   width: 35vw;
   margin: 0;
@@ -28,13 +27,11 @@ aside {
 }
 
 p {
-  /* font-family: Open Sans; */
   color: #E9E9F3;
   font-weight: bold;
 }
 
 button {
-  /* font-family: Open sans; */
   text-align: center;
   width: 20rem;
   height: 2.75rem;
@@ -81,7 +78,6 @@ form {
   height: 52vh;
   margin-left: .1rem;
   padding-top: 0.015rem;
-  /* font-family: Open sans; */
   font-weight: bold;
   color: #1F1F3D;
   background-color: #A9AAD2;
@@ -113,13 +109,11 @@ label {
   border-radius: 0.12rem;
 }
 
-.save-button:hover {
-  background-color: #5356A4;
-}
-
 .save-button:disabled {
+  background-color: #5356A4;
   cursor: not-allowed;
 }
+
 .search-container {
   display: flex;
   align-items: center;
@@ -156,7 +150,6 @@ label {
 article {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
   height: 48vh;
   background-color: #EAEAF4;
   overflow:scroll;
@@ -173,7 +166,6 @@ article {
   flex-direction: column;
   justify-content: space-between;
   height: 330px;
-  /* width: 28%; */
   width: 275px;
   margin: 1.5rem;
   margin-right: 1.2rem;
@@ -219,4 +211,9 @@ article {
   align-items: center;
   height: 2rem;
   background-color: #5356A4;
+}
+
+/*-------------------HIDDEN---------------*/
+.hidden {
+  display: none;
 }
