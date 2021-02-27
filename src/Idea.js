@@ -6,17 +6,24 @@ class Idea {
     this.url = url;
     this.isStar = false;
  }
- 
-  saveToStorage() {
-    var objectToStore = ideaList;
-    var stringifiedObject = JSON.stringify(objectToStore);
 
-    // stringifiedObject (Notice our object has turned into a string!)
-    localStorage.setItem('somethingComplicated', stringifiedObject);
-  }
+  saveToStorage() {
+    if(ideaList.length === 0) {
+      this.deleteFromStorage(); 
+    } else {
+        var objectToStore = ideaList;
+        var stringifiedObject = JSON.stringify(objectToStore);
+        localStorage.setItem('somethingComplicated', stringifiedObject);
+    }
+  } 
+
+  // getFromStorage() {
+  //   var retreievedObject = localStorage.getItem("somethingComplicated");
+  //   parsedObject = JSON.parse(retreievedObject);
+  // }
 
   deleteFromStorage() {
-    // to be updated later
+    localStorage.clear()
   }
 
   updateIdea(id) {
