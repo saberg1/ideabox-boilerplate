@@ -12,7 +12,7 @@ window.addEventListener("load", loadWindow);
 formInformation.addEventListener("submit", submitNewIdea);
 title.addEventListener("input", enableButton);
 inputText.addEventListener("input", enableButton);
-starredIdeaButton.addEventListener("click", starredIdeaPage); 
+starredIdeaButton.addEventListener("click", starredIdeaPage);
 
 // global variables
 var newIdea;
@@ -24,13 +24,13 @@ var parsedObject;
 // if (starredIdeaButton.innerText === "Show All Ideas") {
 //   renderIdea()
 //   starredIdeaButton.innerText = "Show Starred Ideas"
-//   return 
-// } 
+//   return
+// }
 
   // showStarredIdeas ()
 //   for (var i = 0; i < ideaList.length; i++) {
 //     if (ideaList[i].isStar === true ) {
-//       createList += 
+//       createList +=
 //       `
 //         <div class="idea-boxes">
 //           <div class="idea-box-header">
@@ -71,7 +71,7 @@ function loadWindow(event) {
     for (var i = 0; i < parsedObject.length; i++) {
       ideaList.push(parsedObject[i])
     }
-  } 
+  }
   renderIdea();
 }
 
@@ -93,20 +93,20 @@ function updateIdeaList() {
   ideaList.unshift(newIdea);
 }
 
-function ideasRendered() {
-    var createList = "";
-    renderIdeaBox.innerHTML = "";
-  for (var i = 0; i < ideaList.length; i++) { //starIcon${i}
-  createList += 
+function ideasRendered(array) {
+  var createList = "";
+  renderIdeaBox.innerHTML = "";
+  for (var i = 0; i < array.length; i++) { //starIcon${i}
+  createList +=
     `
       <div class="idea-boxes">
         <div class="idea-box-header">
-          <img class="star-icon icon" id="${ideaList[i].id}" src="${ideaList[i].url}"/>
-          <img class="delete-icon icon" id="${ideaList[i].id}" src="./assets/delete.svg"/>
+          <img class="star-icon icon" id="${array[i].id}" src="${array[i].url}"/>
+          <img class="delete-icon icon" id="${array[i].id}" src="./assets/delete.svg"/>
         </div>
         <div class="comment-information">
-          <p class="comment-title">${ideaList[i].title}</p>
-          <p class="comment-text">${ideaList[i].text}</p>
+          <p class="comment-title">${array[i].title}</p>
+          <p class="comment-text">${array[i].text}</p>
         </div>
         <div class="comment-footer">
           <img class="comment-icon icon" src="./assets/comment.svg"/>
@@ -118,33 +118,34 @@ function ideasRendered() {
   renderIdeaBox.innerHTML = createList;
 }
 
+
 function starredIdeaPage () {
-  
-  // var createList = "";
   renderIdeaBox.innerHTML = "";
-  var starredList = []
-    
+  var starredList = [];
+  if (starredIdeaButton.innerText === "Show All Ideas") {
+    starredIdeaButton.innerText = "Show Starred Ideas";
+    ideasRendered(ideaList);
+    return
+  }
   for (var i = 0; i < ideaList.length; i++) {
     if (ideaList[i].isStar === true ) {
-      starredList.push(ideaList[i])
-      // ideasRendered();
+      starredList.push(ideaList[i]);
+      starredIdeaButton.innerText = "Show All Ideas";
     }
-
   }
-  ideaList = starredList
+  // ideaList = starredList;
   console.log(ideaList)
   console.log(starredList)
-  ideasRendered();
+  ideasRendered(starredList);
 }
 
 
 function renderIdea() {
-    // var createList = "";
     renderIdeaBox.innerHTML = "";
-    ideasRendered()
+    ideasRendered(ideaList)
 }
 //     for (var i = 0; i < ideaList.length; i++) { //starIcon${i}
-//     createList += 
+//     createList +=
 //       `
 //         <div class="idea-boxes">
 //           <div class="idea-box-header">
@@ -173,7 +174,7 @@ function deleteIdeaBox(event) {
       }
     }
   }
-// change on refactor to have delete function inside Idea class 
+// change on refactor to have delete function inside Idea class
   renderIdea();
   newIdea.saveToStorage(); //ADD
 }
