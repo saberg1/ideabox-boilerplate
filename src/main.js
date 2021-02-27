@@ -4,21 +4,34 @@ var inputText = document.querySelector(".text-box");
 var formInformation = document.querySelector("form");
 var renderIdeaBox = document.querySelector("#populatedIdea");
 var saveButton = document.querySelector('#saveButton');
+var starredIdeaButton = document.querySelector(".show-starred")
 
 // Event Listeners
 window.addEventListener("load", loadWindow);
 formInformation.addEventListener("submit", submitNewIdea);
 title.addEventListener("input", enableButton);
 inputText.addEventListener("input", enableButton);
+// starredIdeaButton.addEventListener("click", starredIdeasPage); 
 
 // global variables
 var newIdea;
+var parsedObject;
 
 // functions below
+
+
+
 function loadWindow(event) {
   event.preventDefault();
-  renderIdea();
   disableButton();
+  newIdea = new Idea();
+  newIdea.getFromStorage();
+  if(parsedObject !== null) {
+    for (var i = 0; i < parsedObject.length; i++) {
+      ideaList.push(parsedObject[i])
+    }
+  } 
+  renderIdea();
 }
 
 function submitNewIdea(event) {
@@ -64,39 +77,21 @@ function renderIdea() {
     renderIdeaBox.innerHTML = createList;
 }
 
-var ideaBoxClass = document.querySelector(".idea-box-class")
-ideaBoxClass.addEventListener('click', favoritedStar);
-ideaBoxClass.addEventListener('click', deleteIdeaBox);
-
-function favoritedStar(event) {
-  if (event.target.classList.contains('star-icon')) {
-    newIdea.updateIdea(event.target.id);
-  }
-  for (var i = 0; ideaList.length; i++) {
-    if (ideaList[i].isStar === true && event.target.classList.contains('star-icon')) {
-      event.target.src = ideaList[i].url;
-    } else if (event.target.classList.contains('star-icon')) {
-      event.target.src = ideaList[i].url;
-    }
-  }
-  renderIdea();
-}
-
-
-
 function deleteIdeaBox(event) {
   if (event.target.classList.contains('delete-icon')) {
-    for (var i = 0; ideaList.length; i++) {
+    for (var i = 0; i < ideaList.length; i++) {
       if (ideaList[i].id === parseInt(event.target.id)) {
         ideaList.splice(i, 1);
       }
     }
   }
+// change on refactor to have delete function inside Idea class 
   renderIdea();
+  newIdea.saveToStorage(); //ADD
 }
 
+
 var ideaBoxClass = document.querySelector(".idea-box-class");
-// var starIcon = document.querySelector(".idea-boxes");
 ideaBoxClass.addEventListener('click', favoritedStar);
 ideaBoxClass.addEventListener('click', deleteIdeaBox);
 
@@ -114,12 +109,6 @@ function favoritedStar(event) {
     }
   }
   renderIdea()
-}
-
-function loadWindow(event) {
-  event.preventDefault();
-  disableButton();
-  // disable button on load
 }
 
 function disableButton() {
