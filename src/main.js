@@ -39,7 +39,7 @@ function loadWindow(event) {
       ideaList.push(parsedObject[i])
     }
   }
-  renderIdea();
+  ideasRendered(ideaList);
 }
 
 function submitNewIdea(event) {
