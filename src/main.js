@@ -65,10 +65,10 @@ function ideasRendered(array) {
   for (var i = 0; i < array.length; i++) { //starIcon${i}
   createList +=
     `
-      <div class="idea-boxes">
+      <article class="idea-boxes" id="${array[i].id}">
         <div class="idea-box-header">
-          <img class="star-icon icon" id="${array[i].id}" src="${array[i].url}"/>
-          <img class="delete-icon icon" id="${array[i].id}" src="./assets/delete.svg"/>
+          <img class="star-icon icon" src="${array[i].url}"/>
+          <img class="delete-icon icon" src="./assets/delete.svg"/>
         </div>
         <div class="comment-information">
           <p class="comment-title">${array[i].title}</p>
@@ -78,7 +78,7 @@ function ideasRendered(array) {
           <img class="comment-icon icon" src="./assets/comment.svg"/>
           <p class="comment-class">Comment</p>
         </div>
-      </div>
+      </article>
     `
   }
   renderIdeaBox.innerHTML = createList;
@@ -107,21 +107,19 @@ function renderIdea() {
 }
 
 function deleteIdeaBox(event) {
-  if (event.target.classList.contains('delete-icon')) {
-    for (var i = 0; i < ideaList.length; i++) {
-      if (ideaList[i].id === parseInt(event.target.id)) {
-        ideaList.splice(i, 1);
-      }
-    }
-  }
 // change on refactor to have delete function inside Idea class
+  newIdea.sliceIdeaBox(event);
   renderIdea();
   newIdea.saveToStorage(); //ADD
 }
 
 function favoritedStar(event) {
+
+  // if (event.target.classList.contains('star-icon')) {
+  //   newIdea.updateIdea(event.target.id)
+  // }
   if (event.target.classList.contains('star-icon')) {
-    newIdea.updateIdea(event.target.id)
+    newIdea.updateIdea(event.target.closest("article").id);
   }
 
   for (i = 0; i < ideaList.length; i++) {
