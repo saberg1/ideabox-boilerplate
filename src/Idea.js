@@ -19,7 +19,7 @@ class Idea {
 
   getFromStorage() {
     var retrievedObject = localStorage.getItem("somethingComplicated");
-    parsedObject = JSON.parse(retreievedObject);
+    parsedObject = JSON.parse(retrievedObject);
   }
 
   deleteFromStorage() {
