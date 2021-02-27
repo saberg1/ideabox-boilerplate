@@ -25,7 +25,7 @@ function showAllIdeas() {
   starredIdeaButton.innerText = "Show All Ideas"
 }
 
-function showStarredIdeas () {
+function showStarredIdeas() {
   starredIdeaButton.innerText = "Show Starred Ideas"
 }
 
@@ -155,4 +155,25 @@ function enableButton(event) {
 function clearTextBoxes() {
   title.value = "";
   inputText.value = "";
+}
+
+var searchBarInput = document.querySelector("#searchBarInput");
+searchBarInput.addEventListener("input", searchIdeaList);
+
+function searchIdeaList() {
+  if (searchBarInput.value === " ") {
+    ideasRendered(ideaList);
+    return;
+  }
+  var createList = "";
+  renderIdeaBox.innerHTML = "";
+  var filteredIdeaList = [];
+  for (var i = 0; i < ideaList.length; i++) {
+    if (searchBarInput !== " "
+        && (ideaList[i].title.includes(searchBarInput.value)
+        || ideaList[i].text.includes(searchBarInput.value))) {
+          filteredIdeaList.push(ideaList[i]);
+        }
+      }
+  ideasRendered(filteredIdeaList);
 }
