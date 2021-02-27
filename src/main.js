@@ -4,14 +4,15 @@ var inputText = document.querySelector(".text-box");
 var formInformation = document.querySelector("form");
 var renderIdeaBox = document.querySelector("#populatedIdea");
 var saveButton = document.querySelector('#saveButton');
-var starredIdeaButton = document.querySelector(".show-starred")
+// var starredIdeaButton = document.querySelector(".show-starred")
+var starredIdeaButton = document.querySelector("#showStarredButton")
 
 // Event Listeners
 window.addEventListener("load", loadWindow);
 formInformation.addEventListener("submit", submitNewIdea);
 title.addEventListener("input", enableButton);
 inputText.addEventListener("input", enableButton);
-// starredIdeaButton.addEventListener("click", starredIdeasPage); 
+starredIdeaButton.addEventListener("click", starredIdeaPage); 
 
 // global variables
 var newIdea;
@@ -20,6 +21,46 @@ var parsedObject;
 // functions below
 
 
+// if (starredIdeaButton.innerText === "Show All Ideas") {
+//   renderIdea()
+//   starredIdeaButton.innerText = "Show Starred Ideas"
+//   return 
+// } 
+
+  // showStarredIdeas ()
+//   for (var i = 0; i < ideaList.length; i++) {
+//     if (ideaList[i].isStar === true ) {
+//       createList += 
+//       `
+//         <div class="idea-boxes">
+//           <div class="idea-box-header">
+//             <img class="star-icon icon" id="${ideaList[i].id}" src="${ideaList[i].url}"/>
+//             <img class="delete-icon icon" id="${ideaList[i].id}" src="./assets/delete.svg"/>
+//           </div>
+//           <div class="comment-information">
+//             <p class="comment-title">${ideaList[i].title}</p>
+//             <p class="comment-text">${ideaList[i].text}</p>
+//           </div>
+//           <div class="comment-footer">
+//             <img class="comment-icon icon" src="./assets/comment.svg"/>
+//             <p class="comment-class">Comment</p>
+//           </div>
+//         </div>
+//       `
+//     }
+//     renderIdeaBox.innerHTML = createList;
+//     showAllIdeas()
+//     // starredIdeaButton.innerText = "Show All Ideas"
+//   }
+// }
+//
+function showAllIdeas() {
+  starredIdeaButton.innerText = "Show All Ideas"
+}
+
+function showStarredIdeas () {
+  starredIdeaButton.innerText = "Show Starred Ideas"
+}
 
 function loadWindow(event) {
   event.preventDefault();
@@ -52,30 +93,77 @@ function updateIdeaList() {
   ideaList.unshift(newIdea);
 }
 
-function renderIdea() {
+function ideasRendered() {
     var createList = "";
     renderIdeaBox.innerHTML = "";
-    for (var i = 0; i < ideaList.length; i++) { //starIcon${i}
-    createList += 
-      `
-        <div class="idea-boxes">
-          <div class="idea-box-header">
-            <img class="star-icon icon" id="${ideaList[i].id}" src="${ideaList[i].url}"/>
-            <img class="delete-icon icon" id="${ideaList[i].id}" src="./assets/delete.svg"/>
-          </div>
-          <div class="comment-information">
-            <p class="comment-title">${ideaList[i].title}</p>
-            <p class="comment-text">${ideaList[i].text}</p>
-          </div>
-          <div class="comment-footer">
-            <img class="comment-icon icon" src="./assets/comment.svg"/>
-            <p class="comment-class">Comment</p>
-          </div>
+  for (var i = 0; i < ideaList.length; i++) { //starIcon${i}
+  createList += 
+    `
+      <div class="idea-boxes">
+        <div class="idea-box-header">
+          <img class="star-icon icon" id="${ideaList[i].id}" src="${ideaList[i].url}"/>
+          <img class="delete-icon icon" id="${ideaList[i].id}" src="./assets/delete.svg"/>
         </div>
-      `
-    }
-    renderIdeaBox.innerHTML = createList;
+        <div class="comment-information">
+          <p class="comment-title">${ideaList[i].title}</p>
+          <p class="comment-text">${ideaList[i].text}</p>
+        </div>
+        <div class="comment-footer">
+          <img class="comment-icon icon" src="./assets/comment.svg"/>
+          <p class="comment-class">Comment</p>
+        </div>
+      </div>
+    `
+  }
+  renderIdeaBox.innerHTML = createList;
 }
+
+function starredIdeaPage () {
+  
+  // var createList = "";
+  renderIdeaBox.innerHTML = "";
+  var starredList = []
+    
+  for (var i = 0; i < ideaList.length; i++) {
+    if (ideaList[i].isStar === true ) {
+      starredList.push(ideaList[i])
+      // ideasRendered();
+    }
+
+  }
+  ideaList = starredList
+  console.log(ideaList)
+  console.log(starredList)
+  ideasRendered();
+}
+
+
+function renderIdea() {
+    // var createList = "";
+    renderIdeaBox.innerHTML = "";
+    ideasRendered()
+}
+//     for (var i = 0; i < ideaList.length; i++) { //starIcon${i}
+//     createList += 
+//       `
+//         <div class="idea-boxes">
+//           <div class="idea-box-header">
+//             <img class="star-icon icon" id="${ideaList[i].id}" src="${ideaList[i].url}"/>
+//             <img class="delete-icon icon" id="${ideaList[i].id}" src="./assets/delete.svg"/>
+//           </div>
+//           <div class="comment-information">
+//             <p class="comment-title">${ideaList[i].title}</p>
+//             <p class="comment-text">${ideaList[i].text}</p>
+//           </div>
+//           <div class="comment-footer">
+//             <img class="comment-icon icon" src="./assets/comment.svg"/>
+//             <p class="comment-class">Comment</p>
+//           </div>
+//         </div>
+//       `
+//     }
+//     renderIdeaBox.innerHTML = createList;
+// }
 
 function deleteIdeaBox(event) {
   if (event.target.classList.contains('delete-icon')) {
