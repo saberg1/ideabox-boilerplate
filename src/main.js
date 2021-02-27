@@ -18,7 +18,6 @@ ideaBoxClass.addEventListener('click', deleteIdeaBox);
 
 // global variables
 var newIdea;
-var parsedObject;
 
 // functions below
 function showAllIdeas() {
@@ -34,11 +33,11 @@ function loadWindow(event) {
   disableButton();
   newIdea = new Idea();
   newIdea.getFromStorage();
-  if(parsedObject !== null) {
-    for (var i = 0; i < parsedObject.length; i++) {
-      ideaList.push(parsedObject[i])
-    }
-  }
+  // if(parsedObject !== null) {
+  //   for (var i = 0; i < parsedObject.length; i++) {
+  //     ideaList.push(parsedObject[i])
+  //   }
+  // }
   ideasRendered(ideaList);
 }
 
