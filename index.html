@@ -17,28 +17,28 @@
         <div class="border-line"></div>
       </aside>
       <section>
-        <form>
+        <form id="inputForm">
           <div>
             <div>
               <label for="title">Title</label>
-              <input class="title-box" type="text" id="title" name="user_name">
+              <input type="text" class="title-input" id="titleInput">
             </div>
              <div>
                <label for="body">Body</label>
-               <textarea class="text-box" id="body" name="user_message"></textarea>
+               <textarea class="text-input" id="textInput"></textarea>
              </div>
           </div>
           <div>
-            <button class="save-button" id="saveButton" type="submit">Save</button>
+            <button type="submit" class="save-button" id="saveButton">Save</button>
           </div>
           <div class="search-container">
             <div class="search-icon-container">
-              <img class="search-icon" src="./assets/search.svg"/>
+              <img class="search-icon-image" src="./assets/search.svg" alt="icon small white star"/>
             </div>
-            <input type="search" class="search-bar-input" id="searchBarInput" name="" incremental placeholder="Search ideas">
+            <input type="search" class="search-bar-input" id="searchBarInput" name="" placeholder="Search ideas">
           </div>
         </form>
-        <article class="idea-box-class" id="populatedIdea" ></article>
+        <article class="idea-box-class" id="ideaBoxGrid" ></article>
       </section>
     </main>
     <script src="./src/data.js"></script>
@@ -46,19 +46,3 @@
     <script src="./src/main.js"></script>
   </body>
 </html>
-
-
-          <!-- <div class="idea-boxes">
-            <div class="idea-box-header">
-              <img class="star-icon icon" id="starIcon" src="./assets/star.svg"/>
-              <img class="delete-icon icon" src="./assets/delete.svg"/>
-            </div>
-            <div class="comment-information">
-              <p class="comment-title">Idea title</p>
-              <p class="comment-text">Idea body. Don't ever play yourself. Every chance I get, I water the plants, Lion! Cloth talk.</p>
-            </div>
-            <div class="comment-footer">
-                <img class="comment-icon icon"  src="./assets/comment.svg"/>
-                <p class="comment-class">Comment</p>
-            </div>
-          </div> -->

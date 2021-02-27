@@ -1,81 +1,95 @@
 //query qelectors
-var title = document.querySelector(".title-box");
-var inputText = document.querySelector(".text-box");
-var formInformation = document.querySelector("form");
-var renderIdeaBox = document.querySelector("#populatedIdea");
+var titleInput = document.querySelector("#titleInput");
+var textInput = document.querySelector("#textInput");
+var formInformation = document.querySelector("#inputForm");
+var renderIdeaBox = document.querySelector("#ideaBoxGrid");
 var saveButton = document.querySelector('#saveButton');
-var ideaBoxClass = document.querySelector(".idea-box-class");
-var starredIdeaButton = document.querySelector("#showStarredButton")
+var ideaBoxGrid = document.querySelector("#ideaBoxGrid");
+var starredIdeaButton = document.querySelector("#showStarredButton");
 
 // Event Listeners
 window.addEventListener("load", loadWindow);
-formInformation.addEventListener("submit", submitNewIdea);
-title.addEventListener("input", enableButton);
-inputText.addEventListener("input", enableButton);
-starredIdeaButton.addEventListener("click", starredIdeaPage);
-ideaBoxClass.addEventListener('click', favoritedStar);
-ideaBoxClass.addEventListener('click', deleteIdeaBox);
+formInformation.addEventListener("submit", saveNewIdea);
+titleInput.addEventListener("input", enableButton);
+textInput.addEventListener("input", enableButton);
+starredIdeaButton.addEventListener("click", renderFavoriteIdeasToPage);
+ideaBoxGrid.addEventListener("click", switchStarImage);
+ideaBoxGrid.addEventListener("click", deleteIdeaBox);
 
 // global variables
-var newIdea;
+var newIdea; //no global variables except an array for ideas???
 
 // functions below
-function showAllIdeas() {
-  starredIdeaButton.innerText = "Show All Ideas"
-}
-
-function showStarredIdeas() {
-  starredIdeaButton.innerText = "Show Starred Ideas"
-}
-
 function loadWindow(event) {
   event.preventDefault();
-  disableButton();
+  disableSaveButton();
   newIdea = new Idea();
-  newIdea.getFromStorage();
+  newIdea.getFromLocalStorage();
   // if(parsedObject !== null) {
   //   for (var i = 0; i < parsedObject.length; i++) {
   //     ideaList.push(parsedObject[i])
   //   }
   // }
-  ideasRendered(ideaList);
+  generateIdeaBoxGrid(ideaList);
 }
 
-function submitNewIdea(event) {
+function saveNewIdea(event) {
   event.preventDefault();
-  createIdeaList();
-  updateIdeaList();
-  renderIdea();
-  clearTextBoxes();
-  disableButton();
-  newIdea.saveToStorage();
+  createNewIdeaInstance();
+  addNewIdeaToIdeaList();
+  renderAllIdeasToPage();
+  clearTitleTextInput();
+  disableSaveButton();
+  newIdea.saveToLocalStorage();
 }
 
-function createIdeaList() {
-  newIdea = new Idea(title.value, inputText.value, "./assets/star.svg");
+function createNewIdeaInstance() {
+  newIdea = new Idea(titleInput.value, textInput.value, "./assets/star.svg");
 }
 
-function updateIdeaList() {
+function addNewIdeaToIdeaList() { //move to Idea class
   ideaList.unshift(newIdea);
 }
 
-function ideasRendered(array) {
+function renderAllIdeasToPage() {
+  renderIdeaBox.innerHTML = "";
+  generateIdeaBoxGrid(ideaList);
+}
+
+function renderFavoriteIdeasToPage() {
+  renderIdeaBox.innerHTML = "";
+  var favoriteIdeaList = [];
+  if (starredIdeaButton.innerText === "Show All Ideas") {
+    starredIdeaButton.innerText = "Show Starred Ideas";
+    generateIdeaBoxGrid(ideaList);
+    return
+  }
+  for (var i = 0; i < ideaList.length; i++) {
+    if (ideaList[i].isStar === true ) {
+      favoriteIdeaList.push(ideaList[i]);
+      starredIdeaButton.innerText = "Show All Ideas";
+    }
+  }
+  generateIdeaBoxGrid(favoriteIdeaList);
+}
+
+function generateIdeaBoxGrid(array) {
   var createList = "";
   renderIdeaBox.innerHTML = "";
-  for (var i = 0; i < array.length; i++) { //starIcon${i}
+  for (var i = 0; i < array.length; i++) {
   createList +=
     `
       <article class="idea-boxes" id="${array[i].id}">
         <div class="idea-box-header">
-          <img class="star-icon icon" src="${array[i].url}"/>
-          <img class="delete-icon icon" src="./assets/delete.svg"/>
+          <img class="star-icon idea-box-icons" src="${array[i].url}"/>
+          <img class="delete-icon idea-box-icons" src="./assets/delete.svg"/>
         </div>
         <div class="comment-information">
           <p class="comment-title">${array[i].title}</p>
           <p class="comment-text">${array[i].text}</p>
         </div>
         <div class="comment-footer">
-          <img class="comment-icon icon" src="./assets/comment.svg"/>
+          <img class="comment-icon idea-box-icons" src="./assets/comment.svg"/>
           <p class="comment-class">Comment</p>
         </div>
       </article>
@@ -84,63 +98,35 @@ function ideasRendered(array) {
   renderIdeaBox.innerHTML = createList;
 }
 
-function starredIdeaPage() {
-  renderIdeaBox.innerHTML = "";
-  var starredList = [];
-  if (starredIdeaButton.innerText === "Show All Ideas") {
-    starredIdeaButton.innerText = "Show Starred Ideas";
-    ideasRendered(ideaList);
-    return
-  }
-  for (var i = 0; i < ideaList.length; i++) {
-    if (ideaList[i].isStar === true ) {
-      starredList.push(ideaList[i]);
-      starredIdeaButton.innerText = "Show All Ideas";
-    }
-  }
-  ideasRendered(starredList);
-}
-
-function renderIdea() {
-    renderIdeaBox.innerHTML = "";
-    ideasRendered(ideaList)
-}
-
 function deleteIdeaBox(event) {
-// change on refactor to have delete function inside Idea class
-  newIdea.sliceIdeaBox(event);
-  renderIdea();
-  newIdea.saveToStorage(); //ADD
+  newIdea.spliceIdeaBox(event);
+  renderAllIdeasToPage();
+  newIdea.saveToLocalStorage();
 }
 
-function favoritedStar(event) {
-
-  // if (event.target.classList.contains('star-icon')) {
-  //   newIdea.updateIdea(event.target.id)
-  // }
-  if (event.target.classList.contains('star-icon')) {
+function switchStarImage(event) {
+  if (event.target.classList.contains("star-icon")) {
     newIdea.updateIdea(event.target.closest("article").id);
   }
 
   for (i = 0; i < ideaList.length; i++) {
-    if (ideaList[i].isStar === true && event.target.classList.contains('star-icon')) {
+    if (ideaList[i].isStar === true && event.target.classList.contains("star-icon")) {
       event.target.src = ideaList[i].url;
-    } else if (event.target.classList.contains('star-icon')) {
-        console.log('b=', ideaList[i].isStar)
+    } else if (event.target.classList.contains("star-icon")) {
         event.target.src = ideaList[i].url;
     }
   }
-  renderIdea()
+  renderAllIdeasToPage();
 }
 
-function disableButton() {
+function disableSaveButton() {
   saveButton.disabled = true;
 }
 
 function enableButton(event) {
   event.preventDefault();
-  var monitorTitleInput = title.value;
-  var monitorTextBoxInput = inputText.value;
+  var monitorTitleInput = titleInput.value;
+  var monitorTextBoxInput = textInput.value;
   if (monitorTitleInput.length !== 0 && monitorTextBoxInput.length !== 0) {
     saveButton.disabled = false;
   }
@@ -149,9 +135,9 @@ function enableButton(event) {
   }
 }
 
-function clearTextBoxes() {
-  title.value = "";
-  inputText.value = "";
+function clearTitleTextInput() {
+  titleInput.value = "";
+  textInput.value = "";
 }
 
 var searchBarInput = document.querySelector("#searchBarInput");
@@ -162,7 +148,7 @@ function searchIdeaList() {
   console.log("2", searchBarInput.value.length);
   console.log("3", searchBarInput.value.trim().length);
   if (searchBarInput.value.trim().length === 0) { //.trim() recognizes empty spaces as 0 no matter how many
-    ideasRendered(ideaList);
+    generateIdeaBoxGrid(ideaList);
     return;
   }
   var createList = "";
@@ -175,5 +161,5 @@ function searchIdeaList() {
           filteredIdeaList.push(ideaList[i]);
         }
       }
-  ideasRendered(filteredIdeaList);
+  generateIdeaBoxGrid(filteredIdeaList);
 }

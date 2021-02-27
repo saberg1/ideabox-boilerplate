@@ -89,16 +89,16 @@ label {
   margin-bottom: 0.2rem;
 }
 
-.title-box,
+.title-input,
 .save-button,
-.text-box {
+.text-input {
   border: .13rem solid#5356A4;
   height: 3rem;
   width: 30.55rem;
   box-sizing: border-box;
 }
 
-.text-box {
+.text-input {
   height: 5rem;
   resize: none;
 }
@@ -139,7 +139,7 @@ label {
   background-color:#353567
 }
 
-.search-icon {
+.search-icon-image {
   height: 1.5rem;
   width: 2.5rem;
   font-size: 12rem;
@@ -147,7 +147,7 @@ label {
 }
 
 /*--------------------------RIGHT SIDE ARTICLE---------------------*/
-article {
+.idea-box-class {
   display: flex;
   flex-wrap: wrap;
   height: 48vh;
@@ -155,7 +155,7 @@ article {
   overflow:scroll;
 }
 
-.icon {
+.idea-box-icons {
   height: 2rem;
   width: 2rem;
 }
