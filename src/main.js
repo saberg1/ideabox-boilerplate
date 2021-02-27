@@ -4,7 +4,8 @@ var inputText = document.querySelector(".text-box");
 var formInformation = document.querySelector("form");
 var renderIdeaBox = document.querySelector("#populatedIdea");
 var saveButton = document.querySelector('#saveButton');
-var starredIdeaButton = document.querySelector(".show-starred")
+// var starredIdeaButton = document.querySelector(".show-starred")
+var starredIdeaButton = document.querySelector("#showStarredButton")
 
 // Event Listeners
 window.addEventListener("load", loadWindow);
@@ -43,8 +44,14 @@ function starredIdeaPage () {
       `
     }
     renderIdeaBox.innerHTML = createList;
-  }   
+    starredIdeaButton.innerText = "Show All Ideas"
+  }
 }
+
+//change innertext on strredIdeaButton
+// function buttonNameChange() {
+//   starredIdeaButton.innerText = "Show All Ideas"
+// }
 
 
 function loadWindow(event) {
