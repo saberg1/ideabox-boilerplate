@@ -23,8 +23,15 @@ var parsedObject;
 
 function loadWindow(event) {
   event.preventDefault();
-  renderIdea();
   disableButton();
+  newIdea = new Idea();
+  newIdea.getFromStorage();
+  if(parsedObject !== null) {
+    for (var i = 0; i < parsedObject.length; i++) {
+      ideaList.push(parsedObject[i])
+    }
+  } 
+  renderIdea();
 }
 
 function submitNewIdea(event) {
