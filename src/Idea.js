@@ -17,10 +17,10 @@ class Idea {
     }
   } 
 
-  // getFromStorage() {
-  //   var retreievedObject = localStorage.getItem("somethingComplicated");
-  //   parsedObject = JSON.parse(retreievedObject);
-  // }
+  getFromStorage() {
+    var retrievedObject = localStorage.getItem("somethingComplicated");
+    parsedObject = JSON.parse(retreievedObject);
+  }
 
   deleteFromStorage() {
     localStorage.clear()

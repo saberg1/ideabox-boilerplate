@@ -15,7 +15,7 @@ inputText.addEventListener("input", enableButton);
 
 // global variables
 var newIdea;
-// var parsedObject;
+var parsedObject;
 
 // functions below
 
