@@ -23,6 +23,15 @@ var parsedObject;
 function starredIdeaPage () {
   var createList = "";
   renderIdeaBox.innerHTML = "";
+
+  if (starredIdeaButton.innerText === "Show All Ideas") {
+    renderIdea()
+    starredIdeaButton.innerText = "Show Starred Ideas"
+    return 
+  } 
+
+
+
   for (var i = 0; i < ideaList.length; i++) {
     if (ideaList[i].isStar === true ) {
       createList += 
