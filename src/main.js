@@ -11,7 +11,7 @@ window.addEventListener("load", loadWindow);
 formInformation.addEventListener("submit", submitNewIdea);
 title.addEventListener("input", enableButton);
 inputText.addEventListener("input", enableButton);
-// starredIdeaButton.addEventListener("click", starredIdeasPage); 
+starredIdeaButton.addEventListener("click", starredIdeaPage); 
 
 // global variables
 var newIdea;
@@ -19,6 +19,32 @@ var parsedObject;
 
 // functions below
 
+function starredIdeaPage () {
+  var createList = "";
+  renderIdeaBox.innerHTML = "";
+  for (var i = 0; i < ideaList.length; i++) {
+    if (ideaList[i].isStar === true ) {
+      createList += 
+      `
+        <div class="idea-boxes">
+          <div class="idea-box-header">
+            <img class="star-icon icon" id="${ideaList[i].id}" src="${ideaList[i].url}"/>
+            <img class="delete-icon icon" id="${ideaList[i].id}" src="./assets/delete.svg"/>
+          </div>
+          <div class="comment-information">
+            <p class="comment-title">${ideaList[i].title}</p>
+            <p class="comment-text">${ideaList[i].text}</p>
+          </div>
+          <div class="comment-footer">
+            <img class="comment-icon icon" src="./assets/comment.svg"/>
+            <p class="comment-class">Comment</p>
+          </div>
+        </div>
+      `
+    }
+    renderIdeaBox.innerHTML = createList;
+  }   
+}
 
 
 function loadWindow(event) {
