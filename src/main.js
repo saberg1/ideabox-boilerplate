@@ -13,7 +13,7 @@ var searchBarInput = document.querySelector("#searchBarInput");
 window.addEventListener("load", loadWindow);
 formInformation.addEventListener("submit", saveNewIdea);
 titleInput.addEventListener("input", enableSaveButton);
-titleInput.addEventListener('invalid', inputValidation);
+titleInput.addEventListener("invalid", inputValidation);
 textInput.addEventListener("input", enableSaveButton);
 starredIdeaButton.addEventListener("click", renderFavoriteIdeasToPage);
 ideaBoxGrid.addEventListener("click", switchStarImage);

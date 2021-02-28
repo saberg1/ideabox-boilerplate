@@ -40,7 +40,6 @@ p {
   font-size: 1rem;
   color: #E9E9F3;
   background-color: #5356A4;
-  /* border-radius: 0.05rem; */
 }
 
 .border-line {
@@ -107,7 +106,7 @@ label {
   width: 40vw;
   padding-left: 0.5rem;
   font-family: 'Open Sans', sans-serif;
-  font-size: .85rem;
+  font-size: 1rem;
   box-sizing: border-box;
 }
 
@@ -123,18 +122,10 @@ label {
   border-radius: .15rem;
 }
 
-.title-input::placeholder,
-.text-input::placeholder {
-  padding-left: 0.5rem;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 4rem;
-  color: red;
-}
-
 .text-input {
   height: 7rem;
   resize: none;
-  overflow: auto; /*MDN said best practice is auto*/
+  overflow: auto; /ADDS scroll to text input box; *MDN said best practice is auto*/
 }
 
 .save-button {
@@ -144,14 +135,10 @@ label {
   background-color: #353567;
   font-size: 1.3rem;
   font-weight: bolder;
-  /* border-radius: 0.12rem; */
 }
 
 .save-button:disabled {
-  /* border: none; */
   border: .13rem solid #5356A4;
-  background-color: #5356A4;
-  /* background-color: #CBCBCB; */
   background-color: #BCBDD1;
   color: #353567;
   cursor: not-allowed;
@@ -168,14 +155,10 @@ label {
 .search-bar-input {
   border: .13rem solid #353567;
   display: flex;
-  /* height: 3rem; */
-  /* width: 27.55rem; */
-  /* width: 45.05vw; */
   height: 100%;
   width: 100%;
   font-size: 1rem;
-  font-weight: light;
-  /* border-radius: 0.06rem; */
+  font-weight: light;=
 }
 
 .search-icon-container {
@@ -193,7 +176,6 @@ label {
   height: 1.5rem;
   width: 2.5rem;
   font-size: 12rem;
-  /* border-radius: 0.05rem; */
 }
 
 .search-bar-input {
@@ -233,20 +215,15 @@ label {
 }
 
 .idea-box-header {
-  /* border: .2rem solid #1F1F3D; */
   display: flex;
   height: 2rem;
-  /* margin: 0!important;
-  padding: 0!important; */
   justify-content: space-between;
   background-color: #1F1F3D;
-  /* box-sizing: border-box; */
 }
 
 .idea-box-icons {
   height: 2rem;
   width: 2rem;
-  /* background-color: #1F1F3D; */
 }
 .comment-title,
 .comment-text {
@@ -259,13 +236,12 @@ label {
   flex-direction: column;
   height: 15rem;
   margin: 0;
-  /* overflow: scroll; */
 }
 
 .comment-title {
   margin-top: .75rem;
   margin-bottom: .5rem;
-  font-size: 1.4rem; /* change text to 1.4rem */
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
@@ -274,7 +250,7 @@ label {
   padding-right: 2.8rem;
   font-size: 1.4rem;
   font-weight: lighter;
-  overflow: scroll; /*put on comment text not comment information*/
+  overflow: scroll;
 }
 
 .comment-footer {
