@@ -31,33 +31,46 @@ p {
   font-weight: bold;
 }
 
-button {
+.show-favorite-button {
+  border: none;
   text-align: center;
-  width: 20rem;
   height: 2.75rem;
+  width: 25vw;
   font-weight: bold;
   font-size: 1rem;
   color: #E9E9F3;
   background-color: #5356A4;
   border-radius: 0.05rem;
-  border: none;
 }
 
 .border-line {
   border-bottom: 0.15rem solid #353567;
 }
 
-.idea-header{
+.idea-header-text {
   font-size: 1.5rem;
+  color: #E9E9F3;
+}
+
+.idea-header-text, 
+.filter-starred-text,
+.show-starred{
   padding-left: 2rem;
 }
 
-.show-starred,
-.filter-starred {
-  padding-left: 2rem;
-  padding-bottom: 1.5rem;
-  font-size: 1rem;
+.filter-starred-text,
+.show-starred {
   color: #BFBFDD;
+}
+
+.filter-starred-text { 
+  font-size: 1rem;
+  margin-bottom: 1.5rem;;
+}
+
+.show-favorite-button {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;;
 }
 
 /*--------------------------RIGHT SIDE SECTION---------------------*/
@@ -89,23 +102,28 @@ label {
   margin-bottom: 0.2rem;
 }
 
-.title-box,
+.title-input,
 .save-button,
-.text-box {
+.text-input {
   border: .13rem solid#5356A4;
   height: 3rem;
-  width: 30.55rem;
+  /* width: 30.55rem; */
+  width: 40vw;
   box-sizing: border-box;
 }
 
-.text-box {
+.text-input {
   height: 5rem;
   resize: none;
 }
 
 .save-button {
   border: .13rem solid #353567;
+  margin-bottom: 0.1rem;
+  color: #E9E9F3;
   background-color: #353567;
+  font-size: 1.3rem;
+  font-weight: bolder;
   border-radius: 0.12rem;
 }
 
@@ -117,37 +135,50 @@ label {
 .search-container {
   display: flex;
   align-items: center;
+  height: 3rem;
+  width: 40vw;
   margin-bottom: 1rem;
 }
 
 .search-bar-input {
   border: .13rem solid #353567;
   display: flex;
-  height: 3rem;
-  width: 27.55rem;
+  /* height: 3rem; */
+  /* width: 27.55rem; */
+  /* width: 45.05vw; */
+  height: 100%;
+  width: 100%;
   font-size: 1rem;
   font-weight: light;
   border-radius: 0.06rem;
 }
 
 .search-icon-container {
+  border: .13rem solid #353567;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 3rem;
   width: 3rem;
-  background-color:#353567
+  background-color:#353567;
+  box-sizing: border-box;
 }
 
-.search-icon {
+.search-icon-image {
   height: 1.5rem;
   width: 2.5rem;
   font-size: 12rem;
   border-radius: 0.05rem;
 }
 
+.search-bar-input::placeholder {
+  padding-left: 0.5rem;
+  font-family: Open Sans;
+  font-size: 1.1em;
+}
+
 /*--------------------------RIGHT SIDE ARTICLE---------------------*/
-article {
+.idea-box-class {
   display: flex;
   flex-wrap: wrap;
   height: 48vh;
@@ -155,7 +186,7 @@ article {
   overflow:scroll;
 }
 
-.icon {
+.idea-box-icons {
   height: 2rem;
   width: 2rem;
 }
