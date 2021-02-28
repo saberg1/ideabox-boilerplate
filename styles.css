@@ -5,7 +5,7 @@
 /*--------------------------BODY---------------------*/
 body {
   margin: 0;
-  font-family: Open Sans;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /*--------------------------MAIN---------------------*/
@@ -40,7 +40,7 @@ p {
   font-size: 1rem;
   color: #E9E9F3;
   background-color: #5356A4;
-  border-radius: 0.05rem;
+  /* border-radius: 0.05rem; */
 }
 
 .border-line {
@@ -53,24 +53,21 @@ p {
 }
 
 .idea-header-text, 
-.filter-starred-text,
-.show-starred{
-  padding-left: 2rem;
+.filter-favorite-text,
+.show-favorite-box {
+  padding-left: 1.4rem;
 }
 
-.filter-starred-text,
-.show-starred {
-  color: #BFBFDD;
-}
-
-.filter-starred-text { 
-  font-size: 1rem;
+.filter-favorite-text { 
   margin-bottom: 1.5rem;;
+  color: #BFBFDD;
+  font-size: 1rem;
 }
 
 .show-favorite-button {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  color: #E9E9F3;
 }
 
 /*--------------------------RIGHT SIDE SECTION---------------------*/
@@ -107,14 +104,37 @@ label {
 .text-input {
   border: .13rem solid#5356A4;
   height: 3rem;
-  /* width: 30.55rem; */
   width: 40vw;
+  padding-left: 0.5rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: .85rem;
   box-sizing: border-box;
 }
 
+.title-input,
+.save-button,
+.text-input ,
+.save-button,
+.search-bar-input,
+.search-image-icon,
+.idea-boxes,
+.show-favorite-button,
+.search-container {
+  border-radius: .15rem;
+}
+
+.title-input::placeholder,
+.text-input::placeholder {
+  padding-left: 0.5rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4rem;
+  color: red;
+}
+
 .text-input {
-  height: 5rem;
+  height: 7rem;
   resize: none;
+  overflow: auto; /*MDN said best practice is auto*/
 }
 
 .save-button {
@@ -124,11 +144,15 @@ label {
   background-color: #353567;
   font-size: 1.3rem;
   font-weight: bolder;
-  border-radius: 0.12rem;
+  /* border-radius: 0.12rem; */
 }
 
 .save-button:disabled {
   background-color: #5356A4;
+  border: none;
+  /* background-color: #CBCBCB; */
+  /* background-color: #BCBDD1; */
+  /* color: #353567; */
   cursor: not-allowed;
 }
 
@@ -150,7 +174,7 @@ label {
   width: 100%;
   font-size: 1rem;
   font-weight: light;
-  border-radius: 0.06rem;
+  /* border-radius: 0.06rem; */
 }
 
 .search-icon-container {
@@ -168,13 +192,20 @@ label {
   height: 1.5rem;
   width: 2.5rem;
   font-size: 12rem;
-  border-radius: 0.05rem;
+  /* border-radius: 0.05rem; */
 }
 
+.search-bar-input {
+  padding-left: .5rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+}
+
+
 .search-bar-input::placeholder {
-  padding-left: 0.5rem;
-  font-family: Open Sans;
-  font-size: 1.1em;
+  padding-left: .20rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
 }
 
 /*--------------------------RIGHT SIDE ARTICLE---------------------*/
@@ -186,35 +217,40 @@ label {
   overflow:scroll;
 }
 
-.idea-box-icons {
-  height: 2rem;
-  width: 2rem;
-}
-
 .idea-boxes {
   border: .13rem solid #1F1F3D;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 330px;
-  width: 275px;
+  width: 280px;
   margin: 1.5rem;
   margin-right: 1.2rem;
   margin-bottom: 0rem;
   background-color: #FFFFFF;
+  box-sizing: border-box;
 }
 
 .idea-box-header {
+  /* border: .2rem solid #1F1F3D; */
   display: flex;
+  height: 2rem;
+  /* margin: 0!important;
+  padding: 0!important; */
   justify-content: space-between;
   background-color: #1F1F3D;
-  height: 2rem;
+  /* box-sizing: border-box; */
 }
 
+.idea-box-icons {
+  height: 2rem;
+  width: 2rem;
+  /* background-color: #1F1F3D; */
+}
 .comment-title,
 .comment-text {
-  color: black;
   padding: 0 1rem;
+  color: black;
 }
 
 .comment-information {

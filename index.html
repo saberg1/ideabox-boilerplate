@@ -10,8 +10,8 @@
       <aside>
         <p class="idea-header-text">IdeaBox</p>
         <div class="border-line"></div>
-        <p class="filter-starred-text">Filter Starred Ideas</p>
-        <div class="show-starred">
+        <p class="filter-favorite-text">Filter Starred Ideas</p>
+        <div class="show-favorite-box">
           <button class="show-favorite-button" id="showStarredButton">Show Starred Ideas</button>
         </div>
         <div class="border-line"></div>
@@ -21,11 +21,13 @@
           <div>
             <div>
               <label for="title">Title</label>
-              <input type="text" class="title-input" id="titleInput">
+              <input type="text" class="title-input" id="titleInput" required pattern="[A-Za-z0-9()?.-_+={}|^%@#!*$,/~]+">
+              <!-- <input type="text" class="title-input" id="titleInput"> -->
             </div>
              <div>
                <label for="body">Body</label>
                <textarea class="text-input" id="textInput"></textarea>
+               <!-- <textarea class="text-input" id="textInput"></textarea> -->
              </div>
           </div>
           <div>
