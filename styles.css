@@ -107,7 +107,7 @@ label {
   width: 40vw;
   padding-left: 0.5rem;
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.2rem;
+  font-size: .85rem;
   box-sizing: border-box;
 }
 
@@ -132,8 +132,9 @@ label {
 }
 
 .text-input {
-  height: 5rem;
+  height: 7rem;
   resize: none;
+  /* overflow: auto; */
 }
 
 .save-button {
@@ -193,7 +194,7 @@ label {
 .search-bar-input {
   padding-left: .5rem;
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 
