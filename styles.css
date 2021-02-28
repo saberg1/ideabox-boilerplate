@@ -222,7 +222,7 @@ label {
   flex-direction: column;
   height: 15rem;
   margin: 0;
-  overflow:scroll;
+  overflow: scroll;
 }
 
 .comment-title {
