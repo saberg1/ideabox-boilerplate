@@ -149,6 +149,10 @@ label {
 
 .save-button:disabled {
   background-color: #5356A4;
+  border: none;
+  /* background-color: #CBCBCB; */
+  /* background-color: #BCBDD1; */
+  /* color: #353567; */
   cursor: not-allowed;
 }
 
