@@ -144,9 +144,10 @@ var searchBarInput = document.querySelector("#searchBarInput");
 searchBarInput.addEventListener("input", searchIdeaList);
 
 function searchIdeaList() {
-  console.log("1", searchBarInput.value);
-  console.log("2", searchBarInput.value.length);
-  console.log("3", searchBarInput.value.trim().length);
+  // console.log("1", searchBarInput.value);
+  // console.log("2", searchBarInput.value.length);
+  // console.log("3", searchBarInput.value.trim().length);
+
   if (searchBarInput.value.trim().length === 0) { //.trim() recognizes empty spaces as 0 no matter how many
     generateIdeaBoxGrid(ideaList);
     return;
