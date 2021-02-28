@@ -5,7 +5,7 @@
 /*--------------------------BODY---------------------*/
 body {
   margin: 0;
-  font-family: Open Sans;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /*--------------------------MAIN---------------------*/
@@ -70,7 +70,7 @@ p {
 
 .show-favorite-button {
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;;
+  margin-bottom: 1.5rem;
 }
 
 /*--------------------------RIGHT SIDE SECTION---------------------*/
@@ -173,7 +173,7 @@ label {
 
 .search-bar-input::placeholder {
   padding-left: 0.5rem;
-  font-family: Open Sans;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.1em;
 }
 

@@ -47,7 +47,7 @@ function createNewIdeaInstance() {
   newIdea = new Idea(titleInput.value, textInput.value, "./assets/star.svg");
 }
 
-function addNewIdeaToIdeaList() { //move to Idea class
+function addNewIdeaToIdeaList() {                       //move to Idea class as updateIdeaList
   ideaList.unshift(newIdea);
 }
 
@@ -61,10 +61,10 @@ function renderFavoriteIdeasToPage() {
   var favoriteIdeaList = [];
   if (starredIdeaButton.innerText === "Show All Ideas") {
     starredIdeaButton.innerText = "Show Starred Ideas";
-    generateIdeaBoxGrid(ideaList);
-    return
-  }
-  for (var i = 0; i < ideaList.length; i++) {
+    generateIdeaBoxGrid(ideaList);                    // replace w/ renderAllIdeasToPage()
+    return;
+  }                                                   //else call the function renderFavoriteIdeasToPage...
+  for (var i = 0; i < ideaList.length; i++) {         //move to a new function called renderFavoriteIdeasToPage
     if (ideaList[i].isStar === true ) {
       favoriteIdeaList.push(ideaList[i]);
       starredIdeaButton.innerText = "Show All Ideas";
@@ -73,7 +73,7 @@ function renderFavoriteIdeasToPage() {
   generateIdeaBoxGrid(favoriteIdeaList);
 }
 
-function generateIdeaBoxGrid(array) {
+function generateIdeaBoxGrid(array) {                   //change out the parameter name; "array is bad practice"
   var createList = "";
   renderIdeaBox.innerHTML = "";
   for (var i = 0; i < array.length; i++) {
