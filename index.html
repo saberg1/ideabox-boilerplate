@@ -21,11 +21,13 @@
           <div>
             <div>
               <label for="title">Title</label>
-              <input type="text" class="title-input" id="titleInput" required pattern="[A-Za-z0-9]+">
+              <input type="text" class="title-input" id="titleInput" required pattern="[A-Za-z0-9()?.-_+={}|^%@#!*$,/~]+">
+              <!-- <input type="text" class="title-input" id="titleInput"> -->
             </div>
              <div>
                <label for="body">Body</label>
-               <textarea class="text-input" id="textInput" required pattern="[A-Za-z0-9]+"></textarea>
+               <textarea class="text-input" id="textInput"></textarea>
+               <!-- <textarea class="text-input" id="textInput"></textarea> -->
              </div>
           </div>
           <div>

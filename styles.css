@@ -134,7 +134,7 @@ label {
 .text-input {
   height: 7rem;
   resize: none;
-  /* overflow: auto; */
+  overflow: auto; /*MDN said best practice is auto*/
 }
 
 .save-button {
