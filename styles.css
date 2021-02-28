@@ -263,13 +263,15 @@ label {
 }
 
 .comment-title {
-  margin-bottom: 1rem;
+  margin-top: .75rem;
+  margin-bottom: .5rem;
   font-size: 1.4rem; /* change text to 1.4rem */
   font-weight: bold;
 }
 
 .comment-text {
   margin: 0rem;
+  padding-right: 2.8rem;
   font-size: 1.4rem;
   font-weight: lighter;
   overflow: scroll; /*put on comment text not comment information*/
