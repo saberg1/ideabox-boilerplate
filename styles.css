@@ -148,11 +148,12 @@ label {
 }
 
 .save-button:disabled {
+  /* border: none; */
+  border: .13rem solid #5356A4;
   background-color: #5356A4;
-  border: none;
   /* background-color: #CBCBCB; */
-  /* background-color: #BCBDD1; */
-  /* color: #353567; */
+  background-color: #BCBDD1;
+  color: #353567;
   cursor: not-allowed;
 }
 
@@ -258,12 +259,12 @@ label {
   flex-direction: column;
   height: 15rem;
   margin: 0;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .comment-title {
   margin-bottom: 1rem;
-  font-size: 1.1rem;
+  font-size: 1.4rem; /* change text to 1.4rem */
   font-weight: bold;
 }
 
@@ -271,6 +272,7 @@ label {
   margin: 0rem;
   font-size: 1.4rem;
   font-weight: lighter;
+  overflow: scroll; /*put on comment text not comment information*/
 }
 
 .comment-footer {
