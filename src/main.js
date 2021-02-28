@@ -80,15 +80,15 @@ function generateIdeaBoxGrid(array) {                   //change out the paramet
     `
       <article class="idea-boxes" id="${array[i].id}">
         <div class="idea-box-header">
-          <img class="star-icon idea-box-icons" src="${array[i].url}"/>
-          <img class="delete-icon idea-box-icons" src="./assets/delete.svg"/>
+          <img class="star-icon idea-box-icons" src="${array[i].url}" alt="${array[i].alt}"/>
+          <img class="delete-icon idea-box-icons" src="./assets/delete.svg" alt="icon small x to delete box"//>
         </div>
         <div class="comment-information">
           <p class="comment-title">${array[i].title}</p>
           <p class="comment-text">${array[i].text}</p>
         </div>
         <div class="comment-footer">
-          <img class="comment-icon idea-box-icons" src="./assets/comment.svg"/>
+          <img class="comment-icon idea-box-icons" src="./assets/comment.svg" alt="icon create comment button"//>
           <p class="comment-class">Comment</p>
         </div>
       </article>
