@@ -25,7 +25,6 @@ var newIdea; //no global variables except an array for ideas???
 
 // functions below
 function loadWindow(event) {
-  var newIdea;
   event.preventDefault();
   disableSaveButton();
   newIdea = new Idea();
@@ -41,6 +40,7 @@ function saveNewIdea(event) {
   clearTitleTextInput();
   disableSaveButton();
   newIdea.saveToLocalStorage();
+  starredIdeaButton.innerText = "Show Starred Ideas";
 }
 
 function createNewIdeaInstance() {
