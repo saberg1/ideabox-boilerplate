@@ -63,14 +63,19 @@ function renderFavoriteIdeasToPage() {
     starredIdeaButton.innerText = "Show Starred Ideas";
     generateIdeaBoxGrid(ideaList);                    // replace w/ renderAllIdeasToPage()
     return;
-  }                                                   //else call the function renderFavoriteIdeasToPage...
+  }     
+                                                //else call the function renderFavoriteIdeasToPage...
   for (var i = 0; i < ideaList.length; i++) {         //move to a new function called renderFavoriteIdeasToPage
-    if (ideaList[i].isStar === true ) {
+    if (ideaList[i].isStar === true) {
       favoriteIdeaList.push(ideaList[i]);
       starredIdeaButton.innerText = "Show All Ideas";
     }
   }
-  generateIdeaBoxGrid(favoriteIdeaList);
+  if(favoriteIdeaList.length !== 0) {         //ensures favoriteIdeaList contains something else renders all ideaList
+    generateIdeaBoxGrid(favoriteIdeaList);
+  } else {
+    generateIdeaBoxGrid(ideaList); 
+  }
 }
 
 function generateIdeaBoxGrid(array) {                   //change out the parameter name; "array is bad practice"
