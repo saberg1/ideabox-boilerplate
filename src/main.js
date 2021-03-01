@@ -58,23 +58,46 @@ function renderAllIdeasToPage() {
 
 function renderFavoriteIdeasToPage() {
   renderIdeaBox.innerHTML = "";
-  var favoriteIdeaList = [];
+  //1) renderAllIdeasFromFavoriteButton()
+  //2) generateFavoriteIdeaList()
+  //3) renderFavoriteIdeaList()
+  //4) renderNoFavoriteIdeasMessage()
+
+  //1)
   if (starredIdeaButton.innerText === "Show All Ideas") {
     starredIdeaButton.innerText = "Show Starred Ideas";
-    generateIdeaBoxGrid(ideaList);                    // replace w/ renderAllIdeasToPage()
+    // generateIdeaBoxGrid(ideaList);                    // replace w/ renderAllIdeasToPage()
+    renderAllIdeasToPage();
     return;
-  }                                                  //else call the function renderFavoriteIdeasToPage...
-  for (var i = 0; i < ideaList.length; i++) {         //move to a new function called renderFavoriteIdeasToPage
+  }   
+  
+  //2)
+  var favoriteIdeaList = [];
+  for (var i = 0; i < ideaList.length; i++) {
     if (ideaList[i].isStar === true) {
       favoriteIdeaList.push(ideaList[i]);
-      starredIdeaButton.innerText = "Show All Ideas";
     }
   }
-  if(favoriteIdeaList.length !== 0) {         //ensures favoriteIdeaList contains something else renders all ideaList
+
+  //3)
+  if(favoriteIdeaList.length !== 0) {
     generateIdeaBoxGrid(favoriteIdeaList);
-  } else {
-    generateIdeaBoxGrid(ideaList); 
-  }
+    starredIdeaButton.innerText = "Show All Ideas";
+  } else {                                    //#4
+    starredIdeaButton.innerText = "Show All Ideas"
+    renderIdeaBox.innerHTML = 
+    `
+      <article class="idea-boxes">
+        <div class="idea-box-header">
+        </div>
+        <div class="comment-information">
+          <p class="comment-text">There are no favorite ideas!</p>
+        </div>
+        <div class="comment-footer">
+        </div>
+      </article>
+    `
+  } 
 }
 
 function generateIdeaBoxGrid(array) {                   //change out the parameter name; "array is bad practice"
