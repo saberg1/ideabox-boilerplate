@@ -21,11 +21,10 @@ ideaBoxGrid.addEventListener("click", deleteIdeaBox);
 searchBarInput.addEventListener("input", searchIdeaList);
 
 // global variables
-var newIdea; //no global variables except an array for ideas???
+var newIdea; //no global variables except an array for ideas?
 
 // functions below
 function loadWindow(event) {
-  var newIdea;
   event.preventDefault();
   disableSaveButton();
   newIdea = new Idea();
@@ -41,10 +40,11 @@ function saveNewIdea(event) {
   clearTitleTextInput();
   disableSaveButton();
   newIdea.saveToLocalStorage();
+  starredIdeaButton.innerText = "Show Starred Ideas";
 }
 
 function createNewIdeaInstance() {
-  newIdea = new Idea(titleInput.value, textInput.value, "./assets/star.svg");
+  newIdea = new Idea(titleInput.value, textInput.value, "./assets/star.svg", "./assets/comment.svg", "Comment");
 }
 
 function addNewIdeaToIdeaList() {                       //move to Idea class as updateIdeaList
@@ -58,19 +58,46 @@ function renderAllIdeasToPage() {
 
 function renderFavoriteIdeasToPage() {
   renderIdeaBox.innerHTML = "";
-  var favoriteIdeaList = [];
+  //1) renderAllIdeasFromFavoriteButton()
+  //2) generateFavoriteIdeaList()
+  //3) renderFavoriteIdeaList()
+  //4) renderNoFavoriteIdeasMessage()
+
+  //1)
   if (starredIdeaButton.innerText === "Show All Ideas") {
     starredIdeaButton.innerText = "Show Starred Ideas";
-    generateIdeaBoxGrid(ideaList);                    // replace w/ renderAllIdeasToPage()
+    // generateIdeaBoxGrid(ideaList);                    // replace w/ renderAllIdeasToPage()
+    renderAllIdeasToPage();
     return;
-  }                                                   //else call the function renderFavoriteIdeasToPage...
-  for (var i = 0; i < ideaList.length; i++) {         //move to a new function called renderFavoriteIdeasToPage
-    if (ideaList[i].isStar === true ) {
+  }   
+  
+  //2)
+  var favoriteIdeaList = [];
+  for (var i = 0; i < ideaList.length; i++) {
+    if (ideaList[i].isStar === true) {
       favoriteIdeaList.push(ideaList[i]);
-      starredIdeaButton.innerText = "Show All Ideas";
     }
   }
-  generateIdeaBoxGrid(favoriteIdeaList);
+
+  //3)
+  if(favoriteIdeaList.length !== 0) {
+    generateIdeaBoxGrid(favoriteIdeaList);
+    starredIdeaButton.innerText = "Show All Ideas";
+  } else {                                    //#4
+    starredIdeaButton.innerText = "Show All Ideas"
+    renderIdeaBox.innerHTML = 
+    `
+      <article class="idea-boxes">
+        <div class="idea-box-header">
+        </div>
+        <div class="comment-information">
+          <p class="comment-text">There are no favorite ideas!</p>
+        </div>
+        <div class="comment-footer">
+        </div>
+      </article>
+    `
+  } 
 }
 
 function generateIdeaBoxGrid(array) {                   //change out the parameter name; "array is bad practice"
@@ -81,16 +108,16 @@ function generateIdeaBoxGrid(array) {                   //change out the paramet
     `
       <article class="idea-boxes" id="${array[i].id}">
         <div class="idea-box-header">
-          <img class="star-icon idea-box-icons" src="${array[i].url}" alt="${array[i].alt}"/>
-          <img class="delete-icon idea-box-icons" src="./assets/delete.svg" alt="icon small x to delete box"//>
+          <img class="star-icon idea-box-icons" src="${array[i].urlStar}" alt="${array[i].altStar}"/>
+          <img class="delete-icon idea-box-icons" src="./assets/delete.svg" alt="mall x to delete box"/>
         </div>
         <div class="comment-information">
           <p class="comment-title">${array[i].title}</p>
           <p class="comment-text">${array[i].text}</p>
         </div>
         <div class="comment-footer">
-          <img class="comment-icon idea-box-icons" src="./assets/comment.svg" alt="icon create comment button"//>
-          <p class="comment-class">Comment</p>
+          <img class="comment-icon idea-box-icons" src="${array[i].errorIconURL}" alt="${array[i].altErrorIcon}"/>
+          <p class="comment-class">${array[i].commentText}</p>
         </div>
       </article>
     `
@@ -108,15 +135,15 @@ function switchStarImage(event) {
   if (event.target.classList.contains("star-icon")) {
     newIdea.updateIdea(event.target.closest("article").id);
   }                                                     //put in another function?
-
   for (i = 0; i < ideaList.length; i++) {
     if (ideaList[i].isStar === true && event.target.classList.contains("star-icon")) {
-      event.target.src = ideaList[i].url;
+      event.target.src = ideaList[i].urlStar;
     } else if (event.target.classList.contains("star-icon")) {
-        event.target.src = ideaList[i].url;
+        event.target.src = ideaList[i].urlStar;
     }
   }
   renderAllIdeasToPage();
+  newIdea.saveToLocalStorage();
 }
 
 function disableSaveButton() {
@@ -143,6 +170,7 @@ function clearTitleTextInput() {
 function searchIdeaList() {
   if (searchBarInput.value.trim().length === 0) { //.trim() recognizes empty spaces as 0 no matter how many
     generateIdeaBoxGrid(ideaList);
+    starredIdeaButton.innerText = "Show Starred Ideas";
     return;                                       //can we break into two functions?
   }
   var createList = "";
@@ -156,6 +184,7 @@ function searchIdeaList() {
         }
       }
   generateIdeaBoxGrid(filteredIdeaList);
+  starredIdeaButton.innerText = "Show Starred Ideas";
 }
 
 function inputValidation() {
@@ -165,4 +194,22 @@ function inputValidation() {
   //   console.log(titleInput.value.trim().length);
     titleInput.setCustomValidity("Please enter a title. Try again!");
   }
+}
+
+
+ideaBoxGrid.addEventListener("click", renderCommentInProgrressMessage);
+
+function renderCommentInProgrressMessage(event) {
+  if (event.target.classList.contains("comment-icon")) {
+    newIdea.updateComment(event.target.closest("article").id);
+  }                                                     //put in another function?
+  for (i = 0; i < ideaList.length; i++) {
+    if (ideaList[i].isComment === true && event.target.classList.contains("comment-icon")) {
+      event.target.src = ideaList[i].errorIconURL;
+    } else if (event.target.classList.contains("comment-icon")) {
+        event.target.src = ideaList[i].errorIconURL;
+    }
+  }
+  renderAllIdeasToPage();
+  newIdea.saveToLocalStorage();
 }
