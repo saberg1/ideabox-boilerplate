@@ -93,14 +93,16 @@ function generateIdeaBoxGrid(array) {                   //change out the paramet
           <p class="comment-text">${array[i].text}</p>
         </div>
         <div class="comment-footer">
-          <p class="comment-class"><img class="comment-icon idea-box-icons" src="${array[i].errorImage}" alt="error warning"/>Comment</p>
-          <p class="comment-class">no way</p>
+          <img class="comment-icon idea-box-icons" src="${array[i].errorImage}" alt="error warning"/>
+          <p class="comment-class">${array[i].commentText}</p>
         </div>
       </article>
     `
   }
   renderIdeaBox.innerHTML = createList;
 }
+
+          // <p class="comment-class"><img class="comment-icon idea-box-icons" src="${array[i].errorImage}" alt="error warning"/>${array[i].errorImage}</p>
 
 function deleteIdeaBox(event) {
   newIdea.spliceIdeaBox(event);
@@ -173,7 +175,7 @@ function inputValidation() {
 }
 
 
-var commentIcon = document.querySelector(".comment-footer");
+// var commentIcon = document.querySelector(".comment-footer");
 // var errorIcon = document.querySelector('.error-icon');
 // var commentText = document.querySelector('.comment-class');
 
@@ -182,7 +184,6 @@ ideaBoxGrid.addEventListener("click", renderCommentInProgrressMessage);
 function renderCommentInProgrressMessage(event) {
   console.log(event.target);
   console.log(ideaList)
-
   console.log(event.target.closest('p'))
 
 
@@ -192,6 +193,7 @@ function renderCommentInProgrressMessage(event) {
     && event.target.classList.contains("comment-icon")) {
      ideaList[i].isComment = false;
      ideaList[i].errorImage = "./assets/comment.svg";
+     ideaList[i].commentText = "Comment"
 
      
     } else if (ideaList[i].id === parseInt((event.target.closest("article").id)) 
@@ -199,6 +201,7 @@ function renderCommentInProgrressMessage(event) {
               && event.target.classList.contains("comment-icon")) {
         ideaList[i].isComment = true;
         ideaList[i].errorImage= "./assets/downvote.svg";
+        ideaList[i].commentText = "Functionality coming soon"
     }
   }
   renderAllIdeasToPage();

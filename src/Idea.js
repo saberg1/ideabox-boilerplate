@@ -1,5 +1,5 @@
 class Idea {
-  constructor(title, input, urlStar, errorImage) {
+  constructor(title, input, urlStar, errorImage, commentText) {
     this.id = Date.now();
     this.title = title;
     this.text = input;
@@ -8,6 +8,7 @@ class Idea {
     this.alt = "small white star";
     this.isComment = false;
     this.errorImage = errorImage;
+    this.commentText = title;
 
  }
 
