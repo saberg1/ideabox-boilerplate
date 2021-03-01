@@ -13,7 +13,7 @@ var searchBarInput = document.querySelector("#searchBarInput");
 window.addEventListener("load", loadWindow);
 formInformation.addEventListener("submit", saveNewIdea);
 titleInput.addEventListener("input", enableSaveButton);
-titleInput.addEventListener('invalid', inputValidation);
+titleInput.addEventListener("invalid", inputValidation);
 textInput.addEventListener("input", enableSaveButton);
 starredIdeaButton.addEventListener("click", renderFavoriteIdeasToPage);
 ideaBoxGrid.addEventListener("click", switchStarImage);
@@ -25,6 +25,7 @@ var newIdea; //no global variables except an array for ideas???
 
 // functions below
 function loadWindow(event) {
+  var newIdea;
   event.preventDefault();
   disableSaveButton();
   newIdea = new Idea();
@@ -158,9 +159,10 @@ function searchIdeaList() {
 }
 
 function inputValidation() {
+  console.log('a')
   if (titleInput.value.trim().length === 0) {
-    console.log('e');
-    console.log(titleInput.value.trim().length);
+  //   console.log('e');
+  //   console.log(titleInput.value.trim().length);
     titleInput.setCustomValidity("Please enter a title. Try again!");
   }
 }
