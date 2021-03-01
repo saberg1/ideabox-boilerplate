@@ -10,7 +10,6 @@ class Idea {
     this.errorIconURL = errorIconURL;
     this.altErrorIcon = "comment icon"
     this.commentText = commentText;
-
  }
 
   saveToLocalStorage() {
@@ -83,4 +82,14 @@ class Idea {
     }
   }
   
+  generateFavoriteIdeaList() { //modified
+    var favoriteIdeaList = [];
+    for (var i = 0; i < ideaList.length; i++) {
+      if (ideaList[i].isStar === true) {
+        favoriteIdeaList.push(ideaList[i]);
+      }
+    }
+    renderFavoriteIdeaList(favoriteIdeaList)
+  }
+
 }
