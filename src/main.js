@@ -148,6 +148,7 @@ function clearTitleTextInput() {
 function searchIdeaList() {
   if (searchBarInput.value.trim().length === 0) { //.trim() recognizes empty spaces as 0 no matter how many
     generateIdeaBoxGrid(ideaList);
+    starredIdeaButton.innerText = "Show Starred Ideas";
     return;                                       //can we break into two functions?
   }
   var createList = "";
@@ -161,6 +162,7 @@ function searchIdeaList() {
         }
       }
   generateIdeaBoxGrid(filteredIdeaList);
+  starredIdeaButton.innerText = "Show Starred Ideas";
 }
 
 function inputValidation() {
