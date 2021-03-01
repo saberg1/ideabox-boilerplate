@@ -1,11 +1,13 @@
 class Idea {
-  constructor(title, input, url) {
+  constructor(title, input, urlStar, errorImage) {
     this.id = Date.now();
     this.title = title;
     this.text = input;
     this.isStar = false;
-    this.url = url;
-    this.alt = "icon small white star";
+    this.urlStar = urlStar;
+    this.alt = "small white star";
+    this.isComment = false;
+    this.errorImage = errorImage;
 
  }
 
@@ -43,12 +45,12 @@ class Idea {
     for (var i = 0; i < ideaList.length; i++) {
       if (ideaList[i].id === parseInt(id) && ideaList[i].isStar === true) {
        ideaList[i].isStar = false;
-       ideaList[i].url = "./assets/star.svg";
-       ideaList[i].alt = "icon small white star";
+       ideaList[i].urlStar = "./assets/star.svg";
+       ideaList[i].alt = "small white star";
       } else if (ideaList[i].id === parseInt(id) && ideaList[i].isStar === false){
           ideaList[i].isStar = true;
-          ideaList[i].url = "./assets/star-active.svg";
-          ideaList[i].alt = "icon small red star";
+          ideaList[i].urlStar = "./assets/star-active.svg";
+          ideaList[i].alt = "small red star";
       }
     }
   }

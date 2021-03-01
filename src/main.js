@@ -44,7 +44,7 @@ function saveNewIdea(event) {
 }
 
 function createNewIdeaInstance() {
-  newIdea = new Idea(titleInput.value, textInput.value, "./assets/star.svg");
+  newIdea = new Idea(titleInput.value, textInput.value, "./assets/star.svg", "./assets/comment.svg");
 }
 
 function addNewIdeaToIdeaList() {                       //move to Idea class as updateIdeaList
@@ -63,8 +63,7 @@ function renderFavoriteIdeasToPage() {
     starredIdeaButton.innerText = "Show Starred Ideas";
     generateIdeaBoxGrid(ideaList);                    // replace w/ renderAllIdeasToPage()
     return;
-  }     
-                                                //else call the function renderFavoriteIdeasToPage...
+  }                                                  //else call the function renderFavoriteIdeasToPage...
   for (var i = 0; i < ideaList.length; i++) {         //move to a new function called renderFavoriteIdeasToPage
     if (ideaList[i].isStar === true) {
       favoriteIdeaList.push(ideaList[i]);
@@ -86,16 +85,16 @@ function generateIdeaBoxGrid(array) {                   //change out the paramet
     `
       <article class="idea-boxes" id="${array[i].id}">
         <div class="idea-box-header">
-          <img class="star-icon idea-box-icons" src="${array[i].url}" alt="${array[i].alt}"/>
-          <img class="delete-icon idea-box-icons" src="./assets/delete.svg" alt="icon small x to delete box"//>
+          <img class="star-icon idea-box-icons" src="${array[i].urlStar}" alt="${array[i].alt}"/>
+          <img class="delete-icon idea-box-icons" src="./assets/delete.svg" alt="mall x to delete box"/>
         </div>
         <div class="comment-information">
           <p class="comment-title">${array[i].title}</p>
           <p class="comment-text">${array[i].text}</p>
         </div>
         <div class="comment-footer">
-          <img class="comment-icon idea-box-icons" src="./assets/comment.svg" alt="icon create comment button"//>
-          <p class="comment-class">Comment</p>
+          <p class="comment-class"><img class="comment-icon idea-box-icons" src="${array[i].errorImage}" alt="error warning"/>Comment</p>
+          <p class="comment-class">no way</p>
         </div>
       </article>
     `
@@ -113,12 +112,11 @@ function switchStarImage(event) {
   if (event.target.classList.contains("star-icon")) {
     newIdea.updateIdea(event.target.closest("article").id);
   }                                                     //put in another function?
-
   for (i = 0; i < ideaList.length; i++) {
     if (ideaList[i].isStar === true && event.target.classList.contains("star-icon")) {
-      event.target.src = ideaList[i].url;
+      event.target.src = ideaList[i].urlStar;
     } else if (event.target.classList.contains("star-icon")) {
-        event.target.src = ideaList[i].url;
+        event.target.src = ideaList[i].urlStar;
     }
   }
   renderAllIdeasToPage();
@@ -172,4 +170,36 @@ function inputValidation() {
   //   console.log(titleInput.value.trim().length);
     titleInput.setCustomValidity("Please enter a title. Try again!");
   }
+}
+
+
+var commentIcon = document.querySelector(".comment-footer");
+// var errorIcon = document.querySelector('.error-icon');
+// var commentText = document.querySelector('.comment-class');
+
+ideaBoxGrid.addEventListener("click", renderCommentInProgrressMessage);
+
+function renderCommentInProgrressMessage(event) {
+  console.log(event.target);
+  console.log(ideaList)
+
+  console.log(event.target.closest('p'))
+
+
+  for (var i = 0; i < ideaList.length; i++) {
+    if (ideaList[i].id === parseInt((event.target.closest("article").id))
+    && ideaList[i].isComment === true
+    && event.target.classList.contains("comment-icon")) {
+     ideaList[i].isComment = false;
+     ideaList[i].errorImage = "./assets/comment.svg";
+
+     
+    } else if (ideaList[i].id === parseInt((event.target.closest("article").id)) 
+              && ideaList[i].isComment === false
+              && event.target.classList.contains("comment-icon")) {
+        ideaList[i].isComment = true;
+        ideaList[i].errorImage= "./assets/downvote.svg";
+    }
+  }
+  renderAllIdeasToPage();
 }
