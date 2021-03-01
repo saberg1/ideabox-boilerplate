@@ -1,27 +1,28 @@
-//query qelectors
-var titleInput = document.querySelector("#titleInput");
-var textInput = document.querySelector("#textInput");
+//query selectors
 var formInformation = document.querySelector("#inputForm");
+var ideaBoxGrid = document.querySelector("#ideaBoxGrid");
 var renderIdeaBox = document.querySelector("#ideaBoxGrid");
 var saveButton = document.querySelector('#saveButton');
-var ideaBoxGrid = document.querySelector("#ideaBoxGrid");
-var starredIdeaButton = document.querySelector("#showStarredButton");
 var searchBarInput = document.querySelector("#searchBarInput");
-
+var starredIdeaButton = document.querySelector("#showStarredButton");
+var textInput = document.querySelector("#textInput");
+var titleInput = document.querySelector("#titleInput");
 
 // Event Listeners
 window.addEventListener("load", loadWindow);
 formInformation.addEventListener("submit", saveNewIdea);
-titleInput.addEventListener("input", enableSaveButton);
-titleInput.addEventListener("invalid", inputValidation);
-textInput.addEventListener("input", enableSaveButton);
-starredIdeaButton.addEventListener("click", renderFavoriteIdeasToPage);
 ideaBoxGrid.addEventListener("click", switchStarImage);
 ideaBoxGrid.addEventListener("click", deleteIdeaBox);
+ideaBoxGrid.addEventListener("click", renderCommentInProgrressMessage);
 searchBarInput.addEventListener("input", searchIdeaList);
+starredIdeaButton.addEventListener("click", renderFavoriteIdeasToPage);
+textInput.addEventListener("input", enableSaveButton);
+titleInput.addEventListener("input", enableSaveButton);
+titleInput.addEventListener("invalid", inputValidation);
 
 // global variables
 var newIdea; //no global variables except an array for ideas?
+// var ideaList;
 
 // functions below
 function loadWindow(event) {
@@ -56,50 +57,6 @@ function renderAllIdeasToPage() {
   generateIdeaBoxGrid(ideaList);
 }
 
-function renderFavoriteIdeasToPage() {
-  renderIdeaBox.innerHTML = "";
-  //1) renderAllIdeasFromFavoriteButton()
-  //2) generateFavoriteIdeaList()
-  //3) renderFavoriteIdeaList()
-  //4) renderNoFavoriteIdeasMessage()
-
-  //1)
-  if (starredIdeaButton.innerText === "Show All Ideas") {
-    starredIdeaButton.innerText = "Show Starred Ideas";
-    // generateIdeaBoxGrid(ideaList);                    // replace w/ renderAllIdeasToPage()
-    renderAllIdeasToPage();
-    return;
-  }   
-  
-  //2)
-  var favoriteIdeaList = [];
-  for (var i = 0; i < ideaList.length; i++) {
-    if (ideaList[i].isStar === true) {
-      favoriteIdeaList.push(ideaList[i]);
-    }
-  }
-
-  //3)
-  if(favoriteIdeaList.length !== 0) {
-    generateIdeaBoxGrid(favoriteIdeaList);
-    starredIdeaButton.innerText = "Show All Ideas";
-  } else {                                    //#4
-    starredIdeaButton.innerText = "Show All Ideas"
-    renderIdeaBox.innerHTML = 
-    `
-      <article class="idea-boxes">
-        <div class="idea-box-header">
-        </div>
-        <div class="comment-information">
-          <p class="comment-text">There are no favorite ideas!</p>
-        </div>
-        <div class="comment-footer">
-        </div>
-      </article>
-    `
-  } 
-}
-
 function generateIdeaBoxGrid(array) {                   //change out the parameter name; "array is bad practice"
   var createList = "";
   renderIdeaBox.innerHTML = "";
@@ -123,6 +80,45 @@ function generateIdeaBoxGrid(array) {                   //change out the paramet
     `
   }
   renderIdeaBox.innerHTML = createList;
+}
+
+function renderFavoriteIdeasToPage() {  //modified
+  if (starredIdeaButton.innerText === "Show All Ideas") {
+    renderAllIdeasFromFavoriteButton();
+  } else {
+      newIdea.generateFavoriteIdeaList();
+  }
+}
+
+function renderAllIdeasFromFavoriteButton() { //modified
+  renderIdeaBox.innerHTML = "";
+  generateIdeaBoxGrid(ideaList);
+  starredIdeaButton.innerText = "Show Starred Ideas";
+}
+
+function renderFavoriteIdeaList(list) { //modified
+  if(list.length !== 0) {
+    generateIdeaBoxGrid(list);
+  } else {
+      renderNoFavoriteIdeasMessage();
+  }
+  starredIdeaButton.innerText = "Show All Ideas";
+}
+
+function renderNoFavoriteIdeasMessage() { //modified
+  starredIdeaButton.innerText = "Show All Ideas"
+  renderIdeaBox.innerHTML =
+  `
+    <article class="idea-boxes">
+      <div class="idea-box-header">
+      </div>
+      <div class="comment-information">
+        <p class="comment-text">There are no favorite ideas!</p>
+      </div>
+      <div class="comment-footer">
+      </div>
+    </article>
+  `
 }
 
 function deleteIdeaBox(event) {
@@ -195,9 +191,6 @@ function inputValidation() {
     titleInput.setCustomValidity("Please enter a title. Try again!");
   }
 }
-
-
-ideaBoxGrid.addEventListener("click", renderCommentInProgrressMessage);
 
 function renderCommentInProgrressMessage(event) {
   if (event.target.classList.contains("comment-icon")) {
