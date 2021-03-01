@@ -1,5 +1,5 @@
 class Idea {
-  constructor(title, input, urlStar, errorIcon, commentText) {
+  constructor(title, input, urlStar, errorIconURL, commentText) {
     this.id = Date.now();
     this.title = title;
     this.text = input;
@@ -7,7 +7,7 @@ class Idea {
     this.urlStar = urlStar;
     this.altStar = "small white star";
     this.isComment = false;
-    this.errorIcon = errorIcon;
+    this.errorIconURL = errorIconURL;
     this.altErrorIcon = "comment icon"
     this.commentText = commentText;
 
@@ -68,18 +68,15 @@ class Idea {
   }
 
   updateComment(id) {
-    console.log('5', ideaList)
     for (var i = 0; i < ideaList.length; i++) {
       if (ideaList[i].id === parseInt(id) && ideaList[i].isComment === true) {
-        console.log('6')
         ideaList[i].isComment = false;
-        ideaList[i].errorIcon = "./assets/comment.svg";
+        ideaList[i].errorIconURL = "./assets/comment.svg";
         ideaList[i].commentText = "Comment"
         ideaList[i].altErrorIcon = "comment icon";
       } else if (ideaList[i].id === parseInt(id) && ideaList[i].isComment === false){
-        console.log('7')
         ideaList[i].isComment = true;
-        ideaList[i].errorIcon = "./assets/error-icon.svg";
+        ideaList[i].errorIconURL = "./assets/error-icon.svg";
         ideaList[i].commentText = "Functionality coming soon"
         ideaList[i].altErrorIcon = "error icon functionality coming soon";
       }

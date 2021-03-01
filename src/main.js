@@ -93,7 +93,7 @@ function generateIdeaBoxGrid(array) {                   //change out the paramet
           <p class="comment-text">${array[i].text}</p>
         </div>
         <div class="comment-footer">
-          <img class="comment-icon idea-box-icons" src="${array[i].errorIcon}" alt="${array[i].altErrorIcon}"/>
+          <img class="comment-icon idea-box-icons" src="${array[i].errorIconURL}" alt="${array[i].altErrorIcon}"/>
           <p class="comment-class">${array[i].commentText}</p>
         </div>
       </article>
@@ -177,18 +177,14 @@ function inputValidation() {
 ideaBoxGrid.addEventListener("click", renderCommentInProgrressMessage);
 
 function renderCommentInProgrressMessage(event) {
-  console.log('1')
   if (event.target.classList.contains("comment-icon")) {
-    console.log('2')
     newIdea.updateComment(event.target.closest("article").id);
   }                                                     //put in another function?
   for (i = 0; i < ideaList.length; i++) {
     if (ideaList[i].isComment === true && event.target.classList.contains("comment-icon")) {
-      console.log('3')
-      event.target.src = ideaList[i].errorIcon;
+      event.target.src = ideaList[i].errorIconURL;
     } else if (event.target.classList.contains("comment-icon")) {
-      console.log('4')
-        event.target.src = ideaList[i].errorIcon;
+        event.target.src = ideaList[i].errorIconURL;
     }
   }
   renderAllIdeasToPage();
