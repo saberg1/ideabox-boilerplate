@@ -159,9 +159,10 @@ function searchIdeaList() {
 }
 
 function inputValidation() {
+  console.log('a')
   if (titleInput.value.trim().length === 0) {
-    console.log('e');
-    console.log(titleInput.value.trim().length);
+  //   console.log('e');
+  //   console.log(titleInput.value.trim().length);
     titleInput.setCustomValidity("Please enter a title. Try again!");
   }
 }
