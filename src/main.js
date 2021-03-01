@@ -205,4 +205,4 @@ function renderCommentInProgrressMessage(event) {
   }
   renderAllIdeasToPage();
   newIdea.saveToLocalStorage();
-}
+} 
