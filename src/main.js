@@ -44,7 +44,7 @@ function saveNewIdea(event) {
 }
 
 function createNewIdeaInstance() {
-  newIdea = new Idea(titleInput.value, textInput.value, "./assets/star.svg", "./assets/comment.svg");
+  newIdea = new Idea(titleInput.value, textInput.value, "./assets/star.svg", "./assets/comment.svg", "Comment");
 }
 
 function addNewIdeaToIdeaList() {                       //move to Idea class as updateIdeaList
@@ -85,7 +85,7 @@ function generateIdeaBoxGrid(array) {                   //change out the paramet
     `
       <article class="idea-boxes" id="${array[i].id}">
         <div class="idea-box-header">
-          <img class="star-icon idea-box-icons" src="${array[i].urlStar}" alt="${array[i].alt}"/>
+          <img class="star-icon idea-box-icons" src="${array[i].urlStar}" alt="${array[i].altStar}"/>
           <img class="delete-icon idea-box-icons" src="./assets/delete.svg" alt="mall x to delete box"/>
         </div>
         <div class="comment-information">
@@ -93,7 +93,7 @@ function generateIdeaBoxGrid(array) {                   //change out the paramet
           <p class="comment-text">${array[i].text}</p>
         </div>
         <div class="comment-footer">
-          <img class="comment-icon idea-box-icons" src="${array[i].errorImage}" alt="error warning"/>
+          <img class="comment-icon idea-box-icons" src="${array[i].errorIcon}" alt="${array[i].altErrorIcon}"/>
           <p class="comment-class">${array[i].commentText}</p>
         </div>
       </article>
@@ -101,8 +101,6 @@ function generateIdeaBoxGrid(array) {                   //change out the paramet
   }
   renderIdeaBox.innerHTML = createList;
 }
-
-          // <p class="comment-class"><img class="comment-icon idea-box-icons" src="${array[i].errorImage}" alt="error warning"/>${array[i].errorImage}</p>
 
 function deleteIdeaBox(event) {
   newIdea.spliceIdeaBox(event);
@@ -122,6 +120,7 @@ function switchStarImage(event) {
     }
   }
   renderAllIdeasToPage();
+  newIdea.saveToLocalStorage();
 }
 
 function disableSaveButton() {
@@ -175,34 +174,23 @@ function inputValidation() {
 }
 
 
-// var commentIcon = document.querySelector(".comment-footer");
-// var errorIcon = document.querySelector('.error-icon');
-// var commentText = document.querySelector('.comment-class');
-
 ideaBoxGrid.addEventListener("click", renderCommentInProgrressMessage);
 
 function renderCommentInProgrressMessage(event) {
-  console.log(event.target);
-  console.log(ideaList)
-  console.log(event.target.closest('p'))
-
-
-  for (var i = 0; i < ideaList.length; i++) {
-    if (ideaList[i].id === parseInt((event.target.closest("article").id))
-    && ideaList[i].isComment === true
-    && event.target.classList.contains("comment-icon")) {
-     ideaList[i].isComment = false;
-     ideaList[i].errorImage = "./assets/comment.svg";
-     ideaList[i].commentText = "Comment"
-
-     
-    } else if (ideaList[i].id === parseInt((event.target.closest("article").id)) 
-              && ideaList[i].isComment === false
-              && event.target.classList.contains("comment-icon")) {
-        ideaList[i].isComment = true;
-        ideaList[i].errorImage= "./assets/downvote.svg";
-        ideaList[i].commentText = "Functionality coming soon"
+  console.log('1')
+  if (event.target.classList.contains("comment-icon")) {
+    console.log('2')
+    newIdea.updateComment(event.target.closest("article").id);
+  }                                                     //put in another function?
+  for (i = 0; i < ideaList.length; i++) {
+    if (ideaList[i].isComment === true && event.target.classList.contains("comment-icon")) {
+      console.log('3')
+      event.target.src = ideaList[i].errorIcon;
+    } else if (event.target.classList.contains("comment-icon")) {
+      console.log('4')
+        event.target.src = ideaList[i].errorIcon;
     }
   }
   renderAllIdeasToPage();
+  newIdea.saveToLocalStorage();
 }
