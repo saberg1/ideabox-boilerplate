@@ -16,23 +16,23 @@ class Idea {
     if(ideaList.length === 0) {
       this.deleteFromLocalStorage();
     } else {
-        var objectToStore = ideaList;
-        var stringifiedObject = JSON.stringify(objectToStore);
-        localStorage.setItem("somethingComplicated", stringifiedObject);
+        var storedIdeaList = ideaList;
+        var stringifiedIdeaList = JSON.stringify(storedIdeaList);
+        localStorage.setItem("storedIdeaList", stringifiedIdeaList);
     }
   }
 
   getFromLocalStorage() {
-    var parsedObject;
-    var retrievedObject = localStorage.getItem("somethingComplicated");
-    parsedObject = JSON.parse(retrievedObject);
-    this.renderParsedList(parsedObject);
+    var parsedIdeaList;
+    var retrievedIdeaList = localStorage.getItem("storedIdeaList");
+    parsedIdeaList = JSON.parse(retrievedIdeaList);
+    this.renderParsedList(parsedIdeaList);
   }
 
-  renderParsedList(renderParsedObject) {
-    if(renderParsedObject !== null) {
-      for (var i = 0; i < renderParsedObject.length; i++) {
-        ideaList.push(renderParsedObject[i]);
+  renderParsedList(renderParsedIdeaList) {
+    if(renderParsedIdeaList !== null) {
+      for (var i = 0; i < renderParsedIdeaList.length; i++) {
+        ideaList.push(renderParsedIdeaList[i]);
       }
     }
   }
@@ -81,7 +81,7 @@ class Idea {
       }
     }
   }
-  
+
   generateFavoriteIdeaList() { //modified
     var favoriteIdeaList = [];
     for (var i = 0; i < ideaList.length; i++) {
