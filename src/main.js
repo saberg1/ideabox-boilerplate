@@ -21,7 +21,7 @@ ideaBoxGrid.addEventListener("click", deleteIdeaBox);
 searchBarInput.addEventListener("input", searchIdeaList);
 
 // global variables
-var newIdea; //no global variables except an array for ideas???
+var newIdea; //no global variables except an array for ideas?
 
 // functions below
 function loadWindow(event) {

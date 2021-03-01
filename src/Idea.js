@@ -76,8 +76,8 @@ class Idea {
         ideaList[i].altErrorIcon = "comment icon";
       } else if (ideaList[i].id === parseInt(id) && ideaList[i].isComment === false){
         ideaList[i].isComment = true;
-        ideaList[i].errorIconURL = "./assets/error-icon.svg";
-        ideaList[i].commentText = "Functionality coming soon"
+        ideaList[i].errorIconURL = "./assets/traffic sign-1.1s-200px.svg";
+        ideaList[i].commentText = "Under construction"
         ideaList[i].altErrorIcon = "error icon functionality coming soon";
       }
     }
