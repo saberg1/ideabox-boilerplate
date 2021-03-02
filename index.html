@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>IdeaBox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./styles.css">
   </head>
@@ -21,15 +22,17 @@
           <div>
             <div>
               <label for="title">Title</label>
-              <!-- <input type="text" class="title-input" id="titleInput" required pattern="[A-Za-z0-9()?.-_+={}|^%@#!*$,/~]+"> -->
-              <!-- <input type="text" class="title-input" id="titleInput" required pattern="^a-zA-Z0-9_"> -->
-              <input type="text" class="title-input" id="titleInput">
+              <input type="text" class="title-input" id="titleInput" required>
             </div>
-             <div>
+             <div class="text-label"></div>
                <label for="body">Body</label>
-               <textarea class="text-input" id="textInput"></textarea>
-               <!-- <textarea class="text-input" id="textInput"></textarea> -->
-             </div>
+               <textarea class="text-input" id="textInput"></textarea>        
+          </div>
+          <div class="validation">
+            <img class="title-icon-validation error-icon hidden" src="./assets/error-icon.svg" alt="error">
+            <p class="title-validation error-text hidden">A title is required</p>
+            <img class="text-icon-validation error-icon hidden" src="./assets/error-icon.svg" alt="error">
+            <p class="text-validation error-text hidden">Body text is required</p>
           </div>
           <div>
             <button type="submit" class="save-button" id="saveButton">Save</button>
@@ -44,7 +47,6 @@
         <article class="idea-box-class" id="ideaBoxGrid" ></article>
       </section>
     </main>
-    <script src="./src/data.js"></script>
     <script src="./src/Idea.js"></script>
     <script src="./src/main.js"></script>
   </body>
