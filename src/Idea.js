@@ -8,7 +8,7 @@ class Idea {
     this.altStar = "small white star";
     this.isComment = false;
     this.errorIconURL = errorIconURL;
-    this.altErrorIcon = "comment icon"
+    this.altErrorIcon = "comment icon";
     this.commentText = commentText;
   }
   
