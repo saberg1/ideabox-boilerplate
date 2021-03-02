@@ -17,7 +17,7 @@ window.addEventListener("load", loadWindow);
 formInformation.addEventListener("submit", saveNewIdea);
 ideaBoxGrid.addEventListener("click", switchStarImage);
 ideaBoxGrid.addEventListener("click", deleteIdeaBox);
-ideaBoxGrid.addEventListener("click", renderCommentInProgrressMessage);
+ideaBoxGrid.addEventListener("click", renderCommentInProgressMessage);
 searchBarInput.addEventListener("input", searchIdeaList);
 starredIdeaButton.addEventListener("click", renderFavoriteIdeasToPage);
 textInput.addEventListener("input", enableSaveButton);
@@ -49,7 +49,7 @@ function saveNewIdea(event) {
 
 function createNewIdeaInstance() {
   newIdea = new Idea(titleInput.value, textInput.value, "./assets/star.svg", "./assets/comment.svg", "Comment");
-  addNewIdeaToIdeaList(newIdea)
+  addNewIdeaToIdeaList(newIdea);
 }
 
 function addNewIdeaToIdeaList(newIdea) {   
@@ -158,9 +158,7 @@ function updateShowAllButtonStarClick(event) {
   for (i = 0; i < ideaList.length; i++) {
     if (ideaList[i].isStar === true && event.target.classList.contains("star-icon")
         && starredIdeaButton.innerText === "Show All Ideas") {
-          console.log('2', starredIdeaButton.innerText)
       starredIdeaButton.innerText = "Show Starred Ideas";
-          console.log('3', starredIdeaButton.innerText)
     }
   }
 }
@@ -189,7 +187,7 @@ function searchIdeaList() {
   if (searchBarInput.value.trim().length === 0) {
     dontSearchIdeaListIsEmpty();
   } else {
-      searchIdeaLIstNotEmpty();
+      searchIdeaListNotEmpty();
   }
 }
 
@@ -200,7 +198,7 @@ function dontSearchIdeaListIsEmpty() {
   }
 }
 
-function searchIdeaLIstNotEmpty() {
+function searchIdeaListNotEmpty() {
   var createList = "";
   renderIdeaBox.innerHTML = "";
   var filteredIdeaList = [];
@@ -215,7 +213,7 @@ function searchIdeaLIstNotEmpty() {
   starredIdeaButton.innerText = "Show Starred Ideas";
 }
 
-function renderCommentInProgrressMessage(event) {
+function renderCommentInProgressMessage(event) {
   updateComment(event);
   renderComment(event);
 }

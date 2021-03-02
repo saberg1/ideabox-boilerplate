@@ -29,7 +29,6 @@ class Idea {
   }
 
   updateIsStar(id) {
-    console.log(ideaList)
     for (var i = 0; i < ideaList.length; i++) {
       if (ideaList[i].id === parseInt(id) && ideaList[i].isStar) {
        ideaList[i].isStar = false;
@@ -58,12 +57,12 @@ class Idea {
       if (ideaList[i].id === parseInt(id) && ideaList[i].isComment) {
         ideaList[i].isComment = false;
         ideaList[i].errorIconURL = "./assets/comment.svg";
-        ideaList[i].commentText = "Comment"
+        ideaList[i].commentText = "Comment";
         ideaList[i].altErrorIcon = "comment icon";
       } else if (ideaList[i].id === parseInt(id) && !ideaList[i].isComment) {
         ideaList[i].isComment = true;
         ideaList[i].errorIconURL = "./assets/traffic sign-1.1s-200px.svg";
-        ideaList[i].commentText = "Under construction"
+        ideaList[i].commentText = "Under construction";
         ideaList[i].altErrorIcon = "error icon functionality coming soon";
       }
     }
@@ -95,7 +94,7 @@ class Idea {
   }
 
   deleteFromLocalStorage() {
-    localStorage.clear()
+    localStorage.clear();
   }
 
 }
