@@ -220,7 +220,8 @@ label {
   width: 2rem;
 }
 .comment-title,
-.comment-text {
+.comment-text,
+.no-favorite-text {
   padding: 0 1rem;
   color: black;
 }
@@ -239,7 +240,8 @@ label {
   font-weight: bold;
 }
 
-.comment-text {
+.comment-text,
+.no-favorite-text  {
   margin: 0rem;
   padding-right: 2.8rem;
   font-size: 1.4rem;

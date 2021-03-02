@@ -74,7 +74,7 @@ function generateIdeaBoxGrid(list) {
           </div>
           <div class="comment-information">
             <p class="comment-title">${list[i].title}</p>
-            <p class="comment-text">${list[i].text}</p>
+            <p class="no-favorite-text ">${list[i].text}</p>
           </div>
           <div class="comment-footer">
             <img class="comment-icon idea-box-icons" src="${list[i].errorIconURL}" alt="${list[i].altErrorIcon}"/>
