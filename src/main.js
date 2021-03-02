@@ -133,6 +133,7 @@ function deleteIdeaBox(event) {
 function switchStarImage(event) {
   updateStar(event);
   renderStar(event);
+  updateShowAllButtonStarClick(event)
 }
 
 function updateStar(event) {
@@ -151,6 +152,17 @@ function renderStar(event) {
   }
   renderAllIdeasToPage();
   newIdea.saveToLocalStorage();
+}
+
+function updateShowAllButtonStarClick(event) {
+  for (i = 0; i < ideaList.length; i++) {
+    if (ideaList[i].isStar === true && event.target.classList.contains("star-icon")
+        && starredIdeaButton.innerText === "Show All Ideas") {
+          console.log('2', starredIdeaButton.innerText)
+      starredIdeaButton.innerText = "Show Starred Ideas";
+          console.log('3', starredIdeaButton.innerText)
+    }
+  }
 }
 
 function disableSaveButton() {
