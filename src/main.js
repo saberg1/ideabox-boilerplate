@@ -228,22 +228,30 @@ function renderComment(event) {
 
 function renderTitleValidation() {
   if (titleInput.value.trim().length === 0) {
-    titleInputValidation.classList.remove('hidden');
-    titleIconValidation.classList.remove('hidden');
-    saveButton.disabled = true;
+    show(titleInputValidation);
+    show(titleIconValidation);
+    disableSaveButton();
   } else {
-      titleInputValidation.classList.add('hidden');
-      titleIconValidation.classList.add('hidden');
+      hide(titleInputValidation);
+      hide(titleIconValidation);
   }
 }
 
 function renderTextValidation() {
   if (textInput.value.trim().length === 0) {
-    textInputValidation.classList.remove('hidden');
-    textIconValidation.classList.remove('hidden');
-    saveButton.disabled = true;
+    show(textInputValidation);
+    show(textIconValidation);
+    disableSaveButton();
   } else {
-      textInputValidation.classList.add('hidden');
-      textIconValidation.classList.add('hidden');
+      hide(textInputValidation);
+      hide(textIconValidation);
   }
+}
+
+function show(element) {
+  element.classList.remove('hidden');
+}
+
+function hide(element) {
+  element.classList.add('hidden');
 }
