@@ -18,7 +18,8 @@ searchBarInput.addEventListener("input", searchIdeaList);
 starredIdeaButton.addEventListener("click", renderFavoriteIdeasToPage);
 textInput.addEventListener("input", enableSaveButton);
 titleInput.addEventListener("input", enableSaveButton);
-// titleInput.addEventListener("invalid", inputValidation);
+titleInput.addEventListener("input", renderTitleValidation);
+textInput.addEventListener("input", renderTextValidation);
 
 // global variable
 var ideaList = [];
@@ -198,12 +199,6 @@ function searchIdeaLIstNotEmpty() {
   starredIdeaButton.innerText = "Show Starred Ideas";
 }
 
-// function inputValidation() {
-//   if (titleInput.value.trim().length === 0) {
-//     titleInput.setCustomValidity("Please enter a title. Try again!");
-//   }
-// }
-
 function renderCommentInProgrressMessage(event) {
   updateComment(event);
   renderComment(event);
@@ -212,7 +207,7 @@ function renderCommentInProgrressMessage(event) {
 function updateComment(event) {
   if (event.target.classList.contains("comment-icon")) {
     newIdea.updateIsComment(event.target.closest("article").id);
-  }                                                     //put in another function?
+  }
 }
 
 function renderComment(event) {
@@ -225,4 +220,35 @@ function renderComment(event) {
   }
   renderAllIdeasToPage();
   newIdea.saveToLocalStorage();
+}
+
+var titleInputValidation = document.querySelector('.title-validation');
+var titleInputValidation2 = document.querySelector('.title-validation2');
+var textInputValidation = document.querySelector('.text-validation');
+var textInputValidation2 = document.querySelector('.text-validation2');
+
+function renderTitleValidation() {
+  console.log('a')
+  if (titleInput.value.trim().length === 0) {
+    titleInputValidation.classList.remove('hidden');
+    titleInputValidation2.classList.remove('hidden');
+    saveButton.disabled = true;
+  } else {
+      titleInputValidation.classList.add('hidden');
+      titleInputValidation2.classList.add('hidden');
+  }
+}
+
+var textInputValidation = document.querySelector('.text-validation');
+
+function renderTextValidation() {
+  console.log('yes')
+  if (textInput.value.trim().length === 0) {
+    textInputValidation.classList.remove('hidden');
+    textInputValidation2.classList.remove('hidden');
+    saveButton.disabled = true;
+  } else {
+      textInputValidation.classList.add('hidden');
+      textInputValidation2.classList.add('hidden');
+  }
 }
