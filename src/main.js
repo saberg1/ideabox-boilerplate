@@ -74,7 +74,7 @@ function generateIdeaBoxGrid(list) {
           </div>
           <div class="comment-information">
             <p class="comment-title">${list[i].title}</p>
-            <p class="no-favorite-text ">${list[i].text}</p>
+            <p class="comment-text">${list[i].text}</p>
           </div>
           <div class="comment-footer">
             <img class="comment-icon idea-box-icons" src="${list[i].errorIconURL}" alt="${list[i].altErrorIcon}"/>
@@ -227,19 +227,17 @@ function renderComment(event) {
 }
 
 function renderTitleValidation() {
-  console.log('a')
   if (titleInput.value.trim().length === 0) {
     titleInputValidation.classList.remove('hidden');
     titleIconValidation.classList.remove('hidden');
     saveButton.disabled = true;
   } else {
       titleInputValidation.classList.add('hidden');
-      titleiconValidation.classList.add('hidden');
+      titleIconValidation.classList.add('hidden');
   }
 }
 
 function renderTextValidation() {
-  console.log('yes')
   if (textInput.value.trim().length === 0) {
     textInputValidation.classList.remove('hidden');
     textIconValidation.classList.remove('hidden');
