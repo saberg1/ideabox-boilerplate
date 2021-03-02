@@ -6,7 +6,11 @@ var saveButton = document.querySelector('#saveButton');
 var searchBarInput = document.querySelector("#searchBarInput");
 var starredIdeaButton = document.querySelector("#showStarredButton");
 var textInput = document.querySelector("#textInput");
+var textIconValidation = document.querySelector('.text-icon-validation');
+var textInputValidation = document.querySelector('.text-validation');
 var titleInput = document.querySelector("#titleInput");
+var titleIconValidation = document.querySelector('.title-icon-validation');
+var titleInputValidation = document.querySelector('.title-validation');
 
 // Event Listeners
 window.addEventListener("load", loadWindow);
@@ -222,33 +226,26 @@ function renderComment(event) {
   newIdea.saveToLocalStorage();
 }
 
-var titleInputValidation = document.querySelector('.title-validation');
-var titleInputValidation2 = document.querySelector('.title-validation2');
-var textInputValidation = document.querySelector('.text-validation');
-var textInputValidation2 = document.querySelector('.text-validation2');
-
 function renderTitleValidation() {
   console.log('a')
   if (titleInput.value.trim().length === 0) {
     titleInputValidation.classList.remove('hidden');
-    titleInputValidation2.classList.remove('hidden');
+    titleIconValidation.classList.remove('hidden');
     saveButton.disabled = true;
   } else {
       titleInputValidation.classList.add('hidden');
-      titleInputValidation2.classList.add('hidden');
+      titleiconValidation.classList.add('hidden');
   }
 }
-
-var textInputValidation = document.querySelector('.text-validation');
 
 function renderTextValidation() {
   console.log('yes')
   if (textInput.value.trim().length === 0) {
     textInputValidation.classList.remove('hidden');
-    textInputValidation2.classList.remove('hidden');
+    textIconValidation.classList.remove('hidden');
     saveButton.disabled = true;
   } else {
       textInputValidation.classList.add('hidden');
-      textInputValidation2.classList.add('hidden');
+      textIconValidation.classList.add('hidden');
   }
 }

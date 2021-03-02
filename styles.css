@@ -255,11 +255,9 @@ label {
   background-color: #5356A4;
 }
 
-/*-------*/
+/*------------------------TITLE AND BODY TEXT VALIDATION-------------*/
 .validation {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
   align-items: baseline;
   margin: 0;
 }
@@ -267,7 +265,6 @@ label {
 .error-icon {
   width: 1rem;
   margin-top: 0.2rem;
-  /* margin-top: 10px; */
   pointer-events: none;
 }
 
