@@ -29,11 +29,11 @@ p {
 
 .show-favorite-button {
   border: none;
-  text-align: center;
   height: 3rem;
   width: 23vw;
   font-weight: bold;
   font-size: 1rem;
+  text-align: center;
   color: #E9E9F3;
   background-color: #5356A4;
 }
@@ -286,3 +286,58 @@ label {
   display: none;
 }
 
+/* ------------------MEDIA QUERIES MIN WIDTH 900px LARGE SCREEN-------------------- */
+
+/* @media screen and (min-width: 900px) {
+
+  /* .form-box {
+    height: 120px;
+    width: 500px;
+  }
+
+  .meditation-wrapper {
+    height: 160px;
+    width: 715px;
+  } */
+
+/* } */
+
+/* ------------------MEDIA QUERIES MAX WIDTH 950px SMALL SCREENS-------------------- */
+@media only screen and (max-width: 1400px) {
+  
+  .search-container {
+    margin-bottom: 4.5rem;
+  }
+
+  .idea-box-class {
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+/* ------------------MEDIA QUERIES MAX WIDTH 700px SMALL SCREENS-------------------- */
+@media only screen and (max-width: 750px) {
+  
+  .idea-header-text, 
+  .filter-favorite-text,
+  .show-favorite-box {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .show-favorite-button {
+    height: 5rem;
+    width: 7rem;
+  }
+
+  .search-container {
+    margin-bottom: 4.5rem;
+  }
+
+  .idea-box-class {
+    display: flex;
+    justify-content: center;
+  }
+
+}
