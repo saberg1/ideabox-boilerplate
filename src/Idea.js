@@ -13,7 +13,7 @@ class Idea {
   }
   
   updateIdeaList(newIdea) {   
-    if (titleInput.value !== "" && textInput.value !== "") {                    //move to Idea class as updateIdeaList
+    if (titleInput.value !== "" && textInput.value !== "") {
       ideaList.unshift(newIdea);
     }
   }
@@ -31,11 +31,11 @@ class Idea {
   updateIsStar(id) {
     console.log(ideaList)
     for (var i = 0; i < ideaList.length; i++) {
-      if (ideaList[i].id === parseInt(id) && ideaList[i].isStar === true) {
+      if (ideaList[i].id === parseInt(id) && ideaList[i].isStar) {
        ideaList[i].isStar = false;
        ideaList[i].urlStar = "./assets/star.svg";
        ideaList[i].altStar = "small white star";
-      } else if (ideaList[i].id === parseInt(id) && ideaList[i].isStar === false){
+      } else if (ideaList[i].id === parseInt(id) && !ideaList[i].isStar) {
           ideaList[i].isStar = true;
           ideaList[i].urlStar = "./assets/star-active.svg";
           ideaList[i].altStar = "small red star";
@@ -55,12 +55,12 @@ class Idea {
 
   updateIsComment(id) {
     for (var i = 0; i < ideaList.length; i++) {
-      if (ideaList[i].id === parseInt(id) && ideaList[i].isComment === true) {
+      if (ideaList[i].id === parseInt(id) && ideaList[i].isComment) {
         ideaList[i].isComment = false;
         ideaList[i].errorIconURL = "./assets/comment.svg";
         ideaList[i].commentText = "Comment"
         ideaList[i].altErrorIcon = "comment icon";
-      } else if (ideaList[i].id === parseInt(id) && ideaList[i].isComment === false){
+      } else if (ideaList[i].id === parseInt(id) && !ideaList[i].isComment) {
         ideaList[i].isComment = true;
         ideaList[i].errorIconURL = "./assets/traffic sign-1.1s-200px.svg";
         ideaList[i].commentText = "Under construction"

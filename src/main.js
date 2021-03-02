@@ -95,7 +95,7 @@ function renderAllIdeasFromFavoriteButton() {
 }
 
 function renderFavoriteIdeaList(list) {
-  if(list.length) {                       //was list.length !== 0
+  if(list.length) {
     generateIdeaBoxGrid(list);
   } else {
       renderNoFavoriteIdeasMessage();
