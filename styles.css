@@ -248,10 +248,6 @@ label {
   overflow: scroll;
 }
 
-.no-favorite-text {
-  text-align: center;
-}
-
 .comment-footer {
   border-top: .13rem solid #1F1F3D;
   display: flex;
