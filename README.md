@@ -8,14 +8,6 @@ A [Front-End Project] by: [Steven Berg](https://github.com/saberg1)
 
 ## Index
 
-## Title: Self Care Center
-
-A [Front-End Project] by [Steve Calla](https://github.com/stevecalla)
-
-* Project Manager: [Hannah Hudson](https://github.com/hannahhch)
-
-## Index
-
 1. [Overview](#overview)
 2. [Functionality](#functionality)
 3. [Iterations](#iterations)
