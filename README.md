@@ -8,7 +8,6 @@ A [Front-End Project] by: [Steven Berg](https://github.com/saberg1)
 
 ## Index
 
-=======
 ## Title: Self Care Center
 
 A [Front-End Project] by [Steve Calla](https://github.com/stevecalla)
@@ -34,7 +33,7 @@ IdeaBox is a website that allows users to document and store all of their ideas 
 
 ## Website Preview - Responsive View
 
-<img src="https://media.giphy.com/media/cT2SW5d23PDwQS2MQM/giphy.gif" height="500"/>
+<img src="https://media.giphy.com/media/cT2SW5d23PDwQS2MQM/giphy.gif" width="100%" height="500"/>
 
 ## Main Page View
 
