@@ -30,12 +30,21 @@ IdeaBox is a website that allows users to document and store all of their ideas 
 
 ## Website Preview - Basic Functionality
 
-<img src=“https://media.giphy.com/media/2uU7j76WPMNbURCAby/giphy.gif” width=“100%” height=“500”/>
+<!-- <details><summary></summary> -->
+
+<img src="https://media.giphy.com/media/2uU7j76WPMNbURCAby/giphy.gif" width="100%" height="500"/>
+
+<!-- </details> -->
+
+## Website Preview - Animation View
+
+<!-- <details><summary></summary> -->
+
+<img src="https://media.giphy.com/media/2T94rNzeyM0f0mVXdN/giphy.gif" width="100%" height="500"/>
+
+<!-- </details> -->
 
 
-## Website Preview - Responsive View
-
-* XXXXXX
 
 ## Main Page View
 
